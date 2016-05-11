@@ -36,6 +36,23 @@ Route::get('/vadim', function(){
 	return View::make('authVadim');
 });
 
+Route::get('/altaRoles', function(){
+	return View::make('admin/altaRoles');
+});
+
+Route::get('/edicionRoles', function(){
+	return View::make('admin/editarRoles');
+});
+
+Route::get('/edicionFuncionalidades', function(){
+	return View::make('admin/editarFuncionalidades');
+});
+
+Route::get('/altaFuncionalidades', function(){
+	return View::make('admin/altaFuncionalidades');
+});
+
+
 //Route::get('home', 'HomeController@index');
 
 Route::controllers([

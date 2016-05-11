@@ -1,7 +1,7 @@
 // Copia y pega en la consola. En la consola debes estar en el Workspace (ej: anahydros:~/workspace)
-// Cambia lo de COMENTARIO-COMMIT por un comentario de los avances hechos
+// Cambia lo de COMENTARIO por un comentario de los avances hechos
 
 git init
 git add .
-git commit -m "COMENTARIO-COMMIT" 
-git -u origin master
+git commit -m "COMENTARIO" 
+git push -u origin master

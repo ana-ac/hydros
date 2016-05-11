@@ -37,13 +37,15 @@
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav menu_titles_nav" >
+					<li><a href="{{ Route('register') }}">Registrar Usuario</a></li>
 					<li><a href="/listadoRoles">Roles</a></li>
 					<li><a href="/listadoFuncionalidades">Funcionalidades</a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right menu_titles_nav">
-					@if (Auth::guest())
-						<li><a href="{{ Route('register') }}">Registrar Usuario</a></li>
+					<li><a href="{{ Route('logout') }}">Logout</a></li>
+					<!--@if (Auth::guest())
+						<li><a href="{{ Route('register') }}">Perfil de usuario</a></li>
 					@else
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{ Auth::user()->name }} <span class="caret"></span></a>
@@ -51,7 +53,7 @@
 								<li><a href="{{ Route('logout') }}">Logout</a></li>
 							</ul>
 						</li>
-					@endif
+					@endif-->
 				</ul>
 			</div>
 		</div>

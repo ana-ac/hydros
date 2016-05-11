@@ -10,7 +10,7 @@
     <div class="form-area">  
         <form role="form">
         <br style="clear:both">
-                    <h3 style="margin-bottom: 25px; text-align: center;">Nueva Funcionalidad</h3>
+                    <h3 style="margin-bottom: 25px; text-align: center;"> Editar Funcionalidad ... </h3>
     				<div class="form-group">
 						<input type="text" class="form-control" id="nombre" name="nombre" placeholder="nombre" required>
 					</div>
@@ -20,7 +20,7 @@
                         <span class="help-block"><p id="characterLeft" class="help-block ">Usted ha pasado el limite de caracteres</p></span>                    
                     </div>
             
-            <button type="button" id="submit" name="submit" class="btn btn-primary pull-right">Añadir Funcionalidad</button>
+            <button type="button" id="submit" name="submit" class="btn btn-primary pull-right">Actualizar Funcionalidad</button>
         </form>
     </div>
 </div>
