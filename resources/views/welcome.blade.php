@@ -8,7 +8,7 @@
 
 @section('content')
 <div id="first-slider">
-    <div id="carousel-example-generic" class="carousel slide carousel-fade">
+    <div id="carousel-example-generic" style="top: -20px !important;" class="carousel slide carousel-fade">
         <!-- Indicators -->
         <ol class="carousel-indicators">
             <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
@@ -25,8 +25,8 @@
                         <img style="max-width: 200px;"  data-animation="animated zoomInLeft" src="http://s20.postimg.org/pfmmo6qj1/window_domain.png">
                     </div>
                     <div class="col-md-9 text-left">
-                        <h3 data-animation="animated bounceInDown">Add images, or even your logo!</h3>
-                        <h4 data-animation="animated bounceInUp">Easily use stunning effects</h4>             
+                        <h3 data-animation="animated bounceInDown">Sitio web personalizado!</h3>
+                        <h4 data-animation="animated bounceInUp">Fácil de usar y muy intuitivo.</h4>             
                      </div>
                 </div></div>
              </div> 
@@ -34,8 +34,8 @@
             <div class="item slide2">
                 <div class="row"><div class="container">
                     <div class="col-md-7 text-left">
-                        <h3 data-animation="animated bounceInDown"> 50 animation options A beautiful</h3>
-                        <h4 data-animation="animated bounceInUp">Create beautiful slideshows </h4>
+                        <h3 data-animation="animated bounceInDown"> Completa seguridad!</h3>
+                        <h4 data-animation="animated bounceInUp">La herramienta de trabajo definitiva</h4>
                      </div>
                     <div class="col-md-5 text-right">
                         <img style="max-width: 200px;"  data-animation="animated zoomInLeft" src="http://s20.postimg.org/sp11uneml/rack_server_unlock.png">
@@ -46,8 +46,8 @@
             <div class="item slide3">
                 <div class="row"><div class="container">
                     <div class="col-md-7 text-left">
-                        <h3 data-animation="animated bounceInDown">Simple Bootstrap Carousel</h3>
-                        <h4 data-animation="animated bounceInUp">Bootstrap Image Carousel Slider with Animate.css</h4>
+                        <h3 data-animation="animated bounceInDown">Puedes conseguirlo</h3>
+                        <h4 data-animation="animated bounceInUp">Una total organización</h4>
                      </div>
                     <div class="col-md-5 text-right">
                         <img style="max-width: 200px;"  data-animation="animated zoomInLeft" src="http://s20.postimg.org/eq8xvxeq5/globe_network.png">
@@ -58,8 +58,8 @@
             <div class="item slide4">
                 <div class="row"><div class="container">
                     <div class="col-md-7 text-left">
-                        <h3 data-animation="animated bounceInDown">We are creative</h3>
-                        <h4 data-animation="animated bounceInUp">Get start your next awesome project</h4>
+                        <h3 data-animation="animated bounceInDown">Velocidad de ejecución</h3>
+                        <h4 data-animation="animated bounceInUp">Comienza esta increible experiencia!</h4>
                      </div>
                     <div class="col-md-5 text-right">
                         <img style="max-width: 200px;"  data-animation="animated zoomInLeft" src="http://s20.postimg.org/9vf8xngel/internet_speed.png">
@@ -78,16 +78,6 @@
         </a>
     </div>
 </div>
-
-
-<footer>
-    <div class="container">
-        <div class="col-md-10 col-md-offset-1 text-center">
-            
-            <h6>Coded with <i class="fa fa-heart red" style="color: #BC0213;"></i> by <a href="http://hashif.com" target="_blank">Hashif</a></h6>
-        </div>   
-    </div>
-</footer>
 
 @endsection
 
