@@ -1,4 +1,4 @@
-<?php namespace App\Http\Controllers;
+<?php namespace hydros_final\Http\Controllers;
 
 class HomeController extends Controller {
 

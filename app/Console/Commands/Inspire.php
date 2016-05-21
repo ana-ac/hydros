@@ -1,4 +1,4 @@
-<?php namespace App\Console\Commands;
+<?php namespace hydros_final\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Inspiring;

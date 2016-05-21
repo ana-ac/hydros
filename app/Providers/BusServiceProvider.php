@@ -1,4 +1,4 @@
-<?php namespace App\Providers;
+<?php namespace hydros_final\Providers;
 
 use Illuminate\Bus\Dispatcher;
 use Illuminate\Support\ServiceProvider;
@@ -16,7 +16,7 @@ class BusServiceProvider extends ServiceProvider {
 		$dispatcher->mapUsing(function($command)
 		{
 			return Dispatcher::simpleMapping(
-				$command, 'App\Commands', 'App\Handlers\Commands'
+				$command, 'hydros_final\Commands', 'hydros_final\Handlers\Commands'
 			);
 		});
 	}

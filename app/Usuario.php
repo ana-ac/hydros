@@ -1,4 +1,4 @@
-<?php namespace App;
+<?php namespace hydros_final;
 
 use Illuminate\Database\Eloquent\Model;
 

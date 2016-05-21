@@ -139,11 +139,11 @@ return [
 		/*
 		 * Application Service Providers...
 		 */
-		'App\Providers\AppServiceProvider',
-		'App\Providers\BusServiceProvider',
-		'App\Providers\ConfigServiceProvider',
-		'App\Providers\EventServiceProvider',
-		'App\Providers\RouteServiceProvider',
+		'hydros_final\Providers\AppServiceProvider',
+		'hydros_final\Providers\BusServiceProvider',
+		'hydros_final\Providers\ConfigServiceProvider',
+		'hydros_final\Providers\EventServiceProvider',
+		'hydros_final\Providers\RouteServiceProvider',
 
 	],
 

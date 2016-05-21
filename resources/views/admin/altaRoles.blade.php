@@ -36,6 +36,7 @@
 <div class="col-md-5" >
      <div class="form-area" style="height: 458px;">  
        <h3 style="margin-bottom: 25px; text-align: center;">Funcionalidades asociadas</h3>
+        <a href="/altaFuncionalidades"><button type="button" style="margin-top: 316px;" id="submit" name="funcionalidad" class="btn btn-primary pull-right">Añadir Funcionalidad</button></a>
     </div>
 </div>
 </div>

@@ -26,6 +26,7 @@
 	                        <th><input type="text" class="form-control" placeholder="fecha alta" disabled></th>
 	                        <th><input type="text" class="form-control" placeholder="fecha baja" disabled></th>
 	                        <th><input type="text" class="form-control" placeholder="estado" disabled></th>
+	                        <th><input type="text" class="form-control text-center" placeholder="Acción" disabled></th>
 	                    </tr>
 	                </thead>
 	                <tbody>
@@ -37,6 +38,7 @@
 	                        <td>2016-08-05</td>
 	                        <td class="center"> - </td>
 	                        <td><span class="label label-success">Active</span></td>
+	                         <td class="text-center"><a class='btn btn-info btn-xs' href="/perfilUsuario"><span class="glyphicon glyphicon-eye-open"></span>Perfil</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
 	                    </tr>
 	                    <tr>
 	                        <td>2</td>
@@ -46,6 +48,7 @@
 	                        <td>2016-01-05</td>
 	                       	<td>2016-11-05</td>
 	                        <td><span class="label label-warning">Hold</span></td>
+	                        <td class="text-center"><a class='btn btn-info btn-xs' href="/perfilUsuario"><span class="glyphicon glyphicon-eye-open"></span>Perfil</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
 	                    </tr>
 	                    <tr>
 	                        <td>3</td>
@@ -55,6 +58,7 @@
 	                        <td>2016-03-05</td>
 	                         <td><span class="center" > - </span></td>
 	                        <td><span class="label label-success">Active</span></td>
+	                         <td class="text-center"><a class='btn btn-info btn-xs' href="/perfilUsuario"><span class="glyphicon glyphicon-eye-open"></span>Perfil</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
 	                    </tr>
 	                </tbody>
 	            </table>

@@ -1,4 +1,5 @@
 <?php
+{{-- migraciones externas password_resets --}}
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -31,3 +32,7 @@ class CreatePasswordResetsTable extends Migration {
 	}
 
 }
+
+{{-- migraciones externas password_resets --}}
+
+?>

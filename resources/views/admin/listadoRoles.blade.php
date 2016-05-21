@@ -21,7 +21,7 @@
 	                    <th>ID</th>
                         <th>Nombre</th>
                         <th>Fecha Alta</th>
-                        <th class="text-center">Action</th>
+                        <th class="text-center">Acción</th>
 	                </thead>
 	                <tbody>
 	                    <tr>

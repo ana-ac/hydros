@@ -32,6 +32,10 @@ Route::get('/listadoFuncionalidades', function(){
 	return View::make('admin/listadoFuncionalidades');
 });
 
+Route::get('/perfilUsuario', function(){
+	return View::make('admin/perfilUsuario');
+});
+
 Route::get('/vadim', function(){
 	return View::make('authVadim');
 });

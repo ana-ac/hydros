@@ -1,4 +1,4 @@
-<?php namespace App\Providers;
+<?php namespace hydros_final\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

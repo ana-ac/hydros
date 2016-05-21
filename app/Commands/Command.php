@@ -1,4 +1,4 @@
-<?php namespace App\Commands;
+<?php namespace hydros_final\Commands;
 
 abstract class Command {
 

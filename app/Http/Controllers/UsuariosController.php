@@ -1,7 +1,7 @@
-<?php namespace App\Http\Controllers;
+<?php namespace hydros_final\Http\Controllers;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
+use hydros_final\Http\Requests;
+use hydros_final\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 

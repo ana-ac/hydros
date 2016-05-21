@@ -1,6 +1,6 @@
-<?php namespace App\Services;
+<?php namespace hydros_final\Services;
 
-use App\User;
+use hydros_final\User;
 use Validator;
 use Illuminate\Contracts\Auth\Registrar as RegistrarContract;
 
