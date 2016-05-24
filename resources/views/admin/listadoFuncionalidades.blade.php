@@ -24,18 +24,14 @@
                         <th class="text-center">Action</th>
 	                </thead>
 	                <tbody>
-	                    <tr>
-	                        <td>1</td>
-                            <td>Editor de texto</td>
-                            <td>2016-02-05</td>
-                            <td class="text-center"><a class='btn btn-info btn-xs' href="/edicionFuncionalidades"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-            	       </tr>
-	                    <tr>
-	                        <td>2</td>
-                            <td>Calendario / Agenda</td>
-                            <td>2016-30-04</td>
-                            <td class="text-center"><a class='btn btn-info btn-xs' href="/edicionFuncionalidades"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-	                    </tr>
+	               	@foreach($funcionalidades as $funcionalidad)
+			        <tr>
+			            <td>{{ $funcionalidad->funcionalidad_id }}</td>
+                        <td>{{ $funcionalidad->nombre }}</td>
+                        <td>{{ $funcionalidad->created_at }}</td>
+                        <td class="text-center"><a class='btn btn-info btn-xs' href="/edicionFuncionalidades"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+		        	</tr>
+			        @endforeach
 	                </tbody>
 	            </table>
 	        </div>

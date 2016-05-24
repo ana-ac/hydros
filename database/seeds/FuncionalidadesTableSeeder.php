@@ -21,7 +21,7 @@ class FuncionalidadesTableSeeder extends Seeder{
             'funcionalidad_id' => 2,
             'nombre' => 'agenda/calendario',
             'descripcion' => 'agenda / calendario para la organización del usuario y alerta de eventos',
-             'created_at' => Carbon::now()->format('Y-m-d H:i:s')
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s')
           
         ));
     }

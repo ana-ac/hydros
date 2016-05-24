@@ -15,7 +15,7 @@ class UsersTableSeeder extends Seeder{
             'telefono' => '687458978',
             'email' => 'vadimvt@gmail.com',
             'contraseña' => \Hash::make('vadimvt'),
-             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
             'rol' => 1,
             'tipo' => 0, //usuario normal
             'estado' => 1

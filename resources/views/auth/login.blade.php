@@ -31,7 +31,7 @@
 						<div class="form-group">
 							<label class="col-md-4 control-label">Password</label>
 							<div class="col-md-6">
-								<input type="password" class="form-control" name="password">
+								<input type="password" class="form-control" name="contraseña">
 							</div>
 						</div>
 
@@ -51,7 +51,6 @@
 									Login
 								</button>
 
-								<a href="/password/email">Olvidaste tu contraseña?</a>
 							</div>
 						</div>
 					</form>

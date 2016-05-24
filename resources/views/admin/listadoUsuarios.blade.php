@@ -24,43 +24,34 @@
 	                        <th><input type="text" class="form-control" placeholder="apellidos" disabled></th>
 	                        <th><input type="text" class="form-control" placeholder="email" disabled></th>
 	                        <th><input type="text" class="form-control" placeholder="fecha alta" disabled></th>
-	                        <th><input type="text" class="form-control" placeholder="fecha baja" disabled></th>
 	                        <th><input type="text" class="form-control" placeholder="estado" disabled></th>
 	                        <th><input type="text" class="form-control text-center" placeholder="Acción" disabled></th>
 	                    </tr>
 	                </thead>
 	                <tbody>
-	                    <tr>
-	                        <td>1</td>
-	                        <td>vadim</td>
-	                        <td>Turcanu</td>
-	                        <td>vadimhydros@gmail.com</td>
-	                        <td>2016-08-05</td>
-	                        <td class="center"> - </td>
-	                        <td><span class="label label-success">Active</span></td>
-	                         <td class="text-center"><a class='btn btn-info btn-xs' href="/perfilUsuario"><span class="glyphicon glyphicon-eye-open"></span>Perfil</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-	                    </tr>
-	                    <tr>
-	                        <td>2</td>
-	                        <td>ana</td>
-	                        <td>arriaga</td>
-	                        <td>anahydros@gmail.com</td>
-	                        <td>2016-01-05</td>
-	                       	<td>2016-11-05</td>
-	                        <td><span class="label label-warning">Hold</span></td>
-	                        <td class="text-center"><a class='btn btn-info btn-xs' href="/perfilUsuario"><span class="glyphicon glyphicon-eye-open"></span>Perfil</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-	                    </tr>
-	                    <tr>
-	                        <td>3</td>
-	                        <td>juan</td>
-	                        <td>serbos</td>
-	                        <td>j.serbos@gmail.com</td>
-	                        <td>2016-03-05</td>
-	                         <td><span class="center" > - </span></td>
-	                        <td><span class="label label-success">Active</span></td>
-	                         <td class="text-center"><a class='btn btn-info btn-xs' href="/perfilUsuario"><span class="glyphicon glyphicon-eye-open"></span>Perfil</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-	                    </tr>
-	                </tbody>
+					@foreach($usuarios as $usuario)
+						<tr>
+							<td>{{ $usuario->usuario_id }}</td>
+							<td>{{ $usuario->nombre }} </td>
+							<td>{{ $usuario->apellidos }}</td>
+							<td>{{ $usuario->email }} </td>
+							@if($usuario->fecha_alta != null)
+								<td>{{ $usuario->fecha_alta }}</td>
+							@else
+								<td><span class="center" > - </span></td>
+							@endif
+							
+							@if($usuario->estado == 1)
+							    <td><span class="label label-success">Activo</span></td>
+						    @else
+						        <td><span class="label label-warning">Hold</span></td>
+					        @endif
+					        
+					         <td class="text-center"><a class='btn btn-info btn-xs' href="{{ action('UsuarioController@show', [$usuario->usuario_id]) }}"><span class="glyphicon glyphicon-eye-open"></span>Perfil</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+						</tr>
+					@endforeach
+					
+					</tbody>
 	            </table>
 	        </div>
 

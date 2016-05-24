@@ -13,23 +13,11 @@
 
 //Route::get('/', 'HomeController@index');
 
-Route::get('/listadoUsuarios', function(){
-	return View::make('admin/listadoUsuarios');
-});
-Route::get('/altaRoles', function(){
-	return View::make('admin/altaRoles');
-});
+
+
 
 Route::get('/', function(){
-	return View::make('welcome');
-});
-
-Route::get('/listadoRoles', function(){
-	return View::make('admin/listadoRoles');
-});
-
-Route::get('/listadoFuncionalidades', function(){
-	return View::make('admin/listadoFuncionalidades');
+	return View::make('presentacion');
 });
 
 Route::get('/perfilUsuario', function(){
@@ -40,9 +28,6 @@ Route::get('/vadim', function(){
 	return View::make('authVadim');
 });
 
-Route::get('/altaRoles', function(){
-	return View::make('admin/altaRoles');
-});
 
 Route::get('/edicionRoles', function(){
 	return View::make('admin/editarRoles');
@@ -80,6 +65,10 @@ Route::get('logout', [
 	'as' => 'logout'
 ]);
 
+
+							//NO COMENTAR NUNCA , SINO DA ERRORES PORQUE NO ENCUENTRA LA RUTA DE REGISTER QUE DEBE ESTRA DEFINIDA
+							// PERFECTO!! xD
+							//JAJAJJA NOS COMUNICAMOS ASI A PARTIR DE AHORA??
 // routes of register
 Route::get('alta', [
 	'uses' => 'Auth\AuthController@getRegister',
@@ -93,3 +82,64 @@ Route::post('alta', [
 
 //route of resources about userscontroller
 
+
+									// USUARIOS USUARIOS USUARIOS
+									
+Route::get('/listadoUsuarios', 'UsuarioController@index');
+
+Route::get('/perfilUsuario/{id}', [
+	'uses' => 'UsuarioController@show',
+	'as' => 'perfilUsuario'
+]);
+
+Route::get('/editarUsuario/{id}', [
+	'uses' => 'UsuarioController@edit',
+	'as' => 'editarUsuario'
+]);
+
+Route::put('/guardarCambiosUsuario', [
+	'uses' => 'UsuarioController@update',
+	'as' => 'guardarCambios'
+]);
+
+
+// Alta usuario
+Route::get('/altaUsuario',  [
+	'uses' => 'UsuarioController@createget',
+	'as' => 'altaUsuario'
+]);
+
+
+
+									// ROLES ROLES ROLES ROLES
+									
+Route::get('roles', 'RolController@index');
+
+
+Route::get('/listadoRoles', [
+	'uses' => 'RolController@index',
+	'as' => '/listadoRoles'
+]);
+
+Route::get('/altaRoles', [
+	'uses' => 'RolController@create',
+	'as' => '/altaRoles'
+]);
+
+
+								// FUNCIONALIDADES FUNCIONALIDADES FUNCIONALIDADES
+
+Route::get('/listadoFuncionalidades', [
+	'uses' => 'FuncionalidadController@index',
+	'as' => '/listadoFuncionalidades'
+]);
+
+
+/*Route::get('/listadoRoles', function(){
+	return View::make('admin/listadoRoles');
+});
+
+Route::get('/listadoFuncionalidades', function(){
+	return View::make('admin/listadoFuncionalidades');
+});
+*/

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRolTable extends Migration {
+class CreateFuncionalidadsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -11,8 +11,8 @@ class CreateRolTable extends Migration {
 	 * @return void
 	 */
 	public function up(){
-		Schema::create('roles', function(Blueprint $table){
-			$table->increments('rol_id');
+		Schema::create('funcionalidades', function(Blueprint $table){
+			$table->increments('funcionalidad_id');
 			$table->string('nombre',50);
 			$table->string('descripcion',100)->nullable();
 			$table->timestamps('fecha_alta');
@@ -25,8 +25,9 @@ class CreateRolTable extends Migration {
 	 *
 	 * @return void
 	 */
-	public function down(){
-		Schema::drop('roles');
+	public function down()
+	{
+		//
 	}
 
 }

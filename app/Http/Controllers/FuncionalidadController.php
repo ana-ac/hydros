@@ -2,20 +2,22 @@
 
 use hydros_final\Http\Requests;
 use hydros_final\Http\Controllers\Controller;
+use hydros_final\funcionalidad as Funcionalidad;
+use View;
+use Carbon\Carbon;
 
 use Illuminate\Http\Request;
 
-class UsuariosController extends Controller {
+class FuncionalidadController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-	public function index()
-	{
-	 	$usuarios = Usuarios::get();
-        return view('usuarios.index')->with('usuarios', $usuarios);
+	public function index(){
+		$funcionalidades = Funcionalidad::all();
+		return View::make('admin/listadoFuncionalidades')->with('funcionalidades',$funcionalidades);
 	}
 
 	/**
@@ -33,9 +35,13 @@ class UsuariosController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
-	{
-		//
+	public function store(){
+		 $funcionalidad = new Funcionalidad();
+		 $funcionalidad->nombre = Input::get('nombre');
+		 $funcionalidad->descripcion = Input::get('descripcion');
+		 $funcionalidad->created_at = Carbon::now()->format('Y-m-d H:i:s')
+		 $funcionalidad->save();
+		 return Redirect::to('listadoFuncionalidades')->with('notice', 'La funcionalidad ha sido creada correctamente.');
 	}
 
 	/**

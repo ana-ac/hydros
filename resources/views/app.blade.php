@@ -8,7 +8,7 @@
 
 	<link href="/css/app.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
+	<link rel="icon" href="imgs/logo_hydros.png" type="image/x-icon" />
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 
@@ -23,9 +23,12 @@
 </head>
 <body>
 
-	<nav class="navbar navbar-default" id="menu_nav" >
+	<nav style="height:150px;background-color: black;" class="navbar navbar-default" id="menu_nav" >
 		<div class="container-fluid">
-			<a href="/listadoUsuarios" ><div id="logo_header" ></div></a>
+			<a href="/listadoUsuarios" >
+				<div id="logo_header" >
+					<img style="width:110%;"  src="imgs/logo_hydros.png" />
+				</div></a>
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
 					<span class="sr-only">Toggle Navigation</span>
@@ -36,14 +39,12 @@
 			</div>
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-				<ul class="nav navbar-nav menu_titles_nav" >
-					<li><a href="{{ Route('register') }}">Registrar Usuario</a></li>
-					<li><a href="/listadoRoles">Roles</a></li>
-					<li><a href="/listadoFuncionalidades">Funcionalidades</a></li>
-				</ul>
 
 				<ul class="nav navbar-nav navbar-right menu_titles_nav">
 					<li><a href="{{ Route('logout') }}">Logout</a></li>
+					<li><a href="/altaUsuario">Registrar Usuario</a></li>
+					<li><a href="/listadoRoles">Roles</a></li>
+					<li><a href="/listadoFuncionalidades">Funcionalidades</a></li>
 					<!--@if (Auth::guest())
 						<li><a href="{{ Route('register') }}">Perfil de usuario</a></li>
 					@else

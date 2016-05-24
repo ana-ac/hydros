@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFuncionalidadesTable extends Migration {
+class CreateRolsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -11,8 +11,8 @@ class CreateFuncionalidadesTable extends Migration {
 	 * @return void
 	 */
 	public function up(){
-		Schema::create('funcionalidades', function(Blueprint $table){
-			$table->increments('funcionalidad_id');
+		Schema::create('roles', function(Blueprint $table){
+			$table->increments('rol_id');
 			$table->string('nombre',50);
 			$table->string('descripcion',100)->nullable();
 			$table->timestamps('fecha_alta');
@@ -25,9 +25,9 @@ class CreateFuncionalidadesTable extends Migration {
 	 *
 	 * @return void
 	 */
-	public function down()
-	{
-		//
+	public function down(){
+		Schema::drop('roles');
 	}
 
 }
+

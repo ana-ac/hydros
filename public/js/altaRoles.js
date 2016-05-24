@@ -1,4 +1,11 @@
 $(document).ready(function(){ 
+    $('#select_funcionalities_list').click(function(){
+        //
+        var funcionalidad_selected = $( "#funcionalidades option:selected" ).text();
+        var lista = $('#list_funcionalities').text();
+    
+        $('#list_funcionalities').text(lista + funcionalidad_selected);
+    });
     $('#characterLeft').text('140 caracteres');
     $('#descripcion').keydown(function () {
         var max = 140;

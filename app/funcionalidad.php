@@ -2,8 +2,8 @@
 
 use Illuminate\Database\Eloquent\Model;
 
-class Usuario extends Model {
+class funcionalidad extends Model {
 
-	protected $table = 'Usuarios';
+	protected $table = 'funcionalidades';
 
 }

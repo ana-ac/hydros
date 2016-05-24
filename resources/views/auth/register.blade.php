@@ -20,7 +20,7 @@
 
 					<form class="form-horizontal" role="form" method="POST" action="/alta">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">
-
+						{{ method_field('PUT') }}
 						<div class="form-group">
 							<label class="col-md-4 control-label">Nombre</label>
 							<div class="col-md-6">

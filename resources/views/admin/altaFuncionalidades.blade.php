@@ -6,6 +6,9 @@
 
 @section('content')
    <div class="container">
+       @if(Session::has('notice'))
+           <p> <strong> {{ Session::get('notice') }} </strong> </p>
+        @endif
 <div class="col-md-12">
     <div class="form-area">  
         <form role="form">
@@ -16,7 +19,7 @@
 					</div>
 					
                     <div class="form-group">
-                    <textarea class="form-control" type="textarea" id="descripcion" placeholder="descripcion" maxlength="140" rows="7"></textarea>
+                    <textarea class="form-control" type="textarea" id="descripcion"  name="descripcion" placeholder="descripcion" maxlength="140" rows="7"></textarea>
                         <span class="help-block"><p id="characterLeft" class="help-block ">Usted ha pasado el limite de caracteres</p></span>                    
                     </div>
             

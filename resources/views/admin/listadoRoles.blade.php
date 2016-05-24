@@ -20,22 +20,20 @@
 	                <thead>
 	                    <th>ID</th>
                         <th>Nombre</th>
+                        <th>Descripcion</th>
                         <th>Fecha Alta</th>
                         <th class="text-center">Acción</th>
 	                </thead>
 	                <tbody>
-	                    <tr>
-	                        <td>1</td>
-                            <td>Básico</td>
-                            <td>2016-02-05</td>
-                            <td class="text-center"><a class='btn btn-info btn-xs' href="/edicionRoles"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-            	       </tr>
-	                    <tr>
-	                        <td>2</td>
-                            <td>Administrativo</td>
-                            <td>2016-30-04</td>
-                            <td class="text-center"><a class='btn btn-info btn-xs' href="/edicionRoles"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
-	                    </tr>
+			        @foreach($roles as $rol)
+			        <tr>
+			            <td>{{ $rol->rol_id }}</td>
+                        <td>{{ $rol->nombre }}</td>
+                        <td>{{ str_limit($rol->descripcion, $limit = 30, $end = '...') }}</td>
+                        <td>{{ $rol->created_at }}</td>
+                        <td class="text-center"><a class='btn btn-info btn-xs' href="/edicionRoles"><span class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+		        	</tr>
+			        @endforeach
 	                </tbody>
 	            </table>
 	        </div>
