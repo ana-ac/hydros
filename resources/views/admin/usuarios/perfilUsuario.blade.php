@@ -53,15 +53,15 @@
                   <a href="#" class="btn btn-primary">Roles</a>
                   <a href="#" class="btn btn-primary">Funcionalidades</a>
                 </div>
-              </div>
-            </div>
-                 <div class="panel-footer">
+                <div class="panel-footer">
                         <span class="pull-right">
-                            <a href="{{ action('UsuarioController@edit', [$usuario->usuario_id]) }}" data-original-title="Editar usuario" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+                            <a href="{{ action('UsuarioController@edit', [$usuario->id]) }}" data-original-title="Editar usuario" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
                             <a data-original-title="Borrar usuario" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
                         </span>
                     </div>
-            
+              </div>
+            </div>
+                    
           </div>
         </div>
       </div>

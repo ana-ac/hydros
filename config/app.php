@@ -135,6 +135,8 @@ return [
 		'Illuminate\Translation\TranslationServiceProvider',
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
+		
+		
 		/*
 		 * Application Service Providers...
 		 */
@@ -143,6 +145,9 @@ return [
 		'hydros_final\Providers\ConfigServiceProvider',
 		'hydros_final\Providers\EventServiceProvider',
 		'hydros_final\Providers\RouteServiceProvider',
+		 Collective\Html\HtmlServiceProvider::class,
+		
+		
 
 	],
 
@@ -191,6 +196,9 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
+		 'Form' => Collective\Html\FormFacade::class,
+      'Html' => Collective\Html\HtmlFacade::class
+	
 
 	],
 

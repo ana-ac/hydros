@@ -1,0 +1,5 @@
+// Comandos para limpiar la base de datos y poner datos por defecto
+
+php artisan migrate:refresh
+
+php artisan db:seed

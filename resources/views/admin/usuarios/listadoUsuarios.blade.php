@@ -9,9 +9,11 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
+				@include('logs')
+
 	        <div class="panel panel-primary filterable" id="style_div_users" >
 	            <div class="panel-heading" id="header_users" >
-	                <h3 class="panel-title">Busqueda parametrizada de Usuarios</h3>
+	                <h3 class="panel-title">Listado usuarios</h3>
 	                <div class="pull-right">
 	                    <button class="btn btn-default btn-xs btn-filter"><span class="glyphicon glyphicon-filter"></span> Filtrar</button>
 	                </div>
@@ -31,12 +33,12 @@
 	                <tbody>
 					@foreach($usuarios as $usuario)
 						<tr>
-							<td>{{ $usuario->usuario_id }}</td>
+							<td>{{ $usuario->id }}</td>
 							<td>{{ $usuario->nombre }} </td>
 							<td>{{ $usuario->apellidos }}</td>
 							<td>{{ $usuario->email }} </td>
-							@if($usuario->fecha_alta != null)
-								<td>{{ $usuario->fecha_alta }}</td>
+							@if($usuario->created_at != null)
+								<td>{{ $usuario->created_at }}</td>
 							@else
 								<td><span class="center" > - </span></td>
 							@endif
@@ -47,16 +49,19 @@
 						        <td><span class="label label-warning">Hold</span></td>
 					        @endif
 					        
-					         <td class="text-center"><a class='btn btn-info btn-xs' href="{{ action('UsuarioController@show', [$usuario->usuario_id]) }}"><span class="glyphicon glyphicon-eye-open"></span>Perfil</a> <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a></td>
+					         <td class="text-center">
+					         	<a class='btn btn-info btn-xs' href="perfilUsuario/{{ $usuario->id }}"><span class="glyphicon glyphicon-eye-open"></span>Perfil</a> 
+					         	<a href="{{ url('/bajaUsuario', $usuario->id ) }}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Del</a>
+					         </td>
 						</tr>
 					@endforeach
 					
 					</tbody>
 	            </table>
 	        </div>
-
 		</div>
 	</div>
+	
 </div>
 
 @endsection

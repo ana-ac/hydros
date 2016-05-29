@@ -42,7 +42,7 @@
 
 				<ul class="nav navbar-nav navbar-right menu_titles_nav">
 					<li><a href="{{ Route('logout') }}">Logout</a></li>
-					<li><a href="/altaUsuario">Registrar Usuario</a></li>
+					<li><a href="altaUsuario">Registrar Usuario</a></li>
 					<li><a href="/listadoRoles">Roles</a></li>
 					<li><a href="/listadoFuncionalidades">Funcionalidades</a></li>
 					<!--@if (Auth::guest())

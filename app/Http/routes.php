@@ -29,18 +29,6 @@ Route::get('/vadim', function(){
 });
 
 
-Route::get('/edicionRoles', function(){
-	return View::make('admin/editarRoles');
-});
-
-Route::get('/edicionFuncionalidades', function(){
-	return View::make('admin/editarFuncionalidades');
-});
-
-Route::get('/altaFuncionalidades', function(){
-	return View::make('admin/altaFuncionalidades');
-});
-
 
 //Route::get('home', 'HomeController@index');
 
@@ -69,6 +57,7 @@ Route::get('logout', [
 							//NO COMENTAR NUNCA , SINO DA ERRORES PORQUE NO ENCUENTRA LA RUTA DE REGISTER QUE DEBE ESTRA DEFINIDA
 							// PERFECTO!! xD
 							//JAJAJJA NOS COMUNICAMOS ASI A PARTIR DE AHORA??
+							// Va! Estos son los recordatorios jajaja
 // routes of register
 Route::get('alta', [
 	'uses' => 'Auth\AuthController@getRegister',
@@ -84,62 +73,121 @@ Route::post('alta', [
 
 
 									// USUARIOS USUARIOS USUARIOS
-									
-Route::get('/listadoUsuarios', 'UsuarioController@index');
 
-Route::get('/perfilUsuario/{id}', [
-	'uses' => 'UsuarioController@show',
-	'as' => 'perfilUsuario'
-]);
+// LISTADO
+Route::get('/listadoUsuarios', 'UsuarioController@index');	
 
-Route::get('/editarUsuario/{id}', [
-	'uses' => 'UsuarioController@edit',
-	'as' => 'editarUsuario'
-]);
+// PERFIL
+Route::get('/perfilUsuario/{id}', 'UsuarioController@show');  
 
-Route::put('/guardarCambiosUsuario', [
-	'uses' => 'UsuarioController@update',
-	'as' => 'guardarCambios'
-]);
+// EDICION
+Route::get('/editarUsuario/{id}', 'UsuarioController@edit'); 
+Route::post('/editarUsuario/{id}', 'UsuarioController@update');
 
+// ALTA
+Route::get('/altaUsuario', 'UsuarioController@create'); 
+Route::post('/altaUsuario', 'UsuarioController@store');
 
-// Alta usuario
-Route::get('/altaUsuario',  [
-	'uses' => 'UsuarioController@createget',
-	'as' => 'altaUsuario'
-]);
+// BAJA
+Route::get('/bajaUsuario/{id}', 'UsuarioController@destroy');
 
+Route::controller('usuario', 'UsuarioController');
 
 
 									// ROLES ROLES ROLES ROLES
-									
+
 Route::get('roles', 'RolController@index');
 
 
-Route::get('/listadoRoles', [
+Route::get('/roles', [
 	'uses' => 'RolController@index',
-	'as' => '/listadoRoles'
+	'as' => '/roles'
 ]);
 
-Route::get('/altaRoles', [
+Route::post('/roles', [
+	'uses' => 'RolController@store',
+	'as' => '/altaRoles'
+]);
+
+Route::get('/roles/crear', [
 	'uses' => 'RolController@create',
 	'as' => '/altaRoles'
+]);
+
+Route::get('/roles/{id}',[
+	'uses' => 'RolController@show',
+	'as' => 'roles'
+]);
+
+Route::get('/roles/editar/{id}',[
+	'uses' => 'RolController@edit',
+	'as' => 'roles.editar'
+]);
+
+
+Route::put('/roles/{id}',[
+	'uses' => 'RolController@update',
+	'as' => 'roles.detalle'
+]);
+
+Route::delete('/roles/{id}',[
+	'uses' => 'RolController@destroy',
+	'as' => 'roles.eliminar'
 ]);
 
 
 								// FUNCIONALIDADES FUNCIONALIDADES FUNCIONALIDADES
 
-Route::get('/listadoFuncionalidades', [
+Route::get('/funcionalidades', [
 	'uses' => 'FuncionalidadController@index',
-	'as' => '/listadoFuncionalidades'
+	'as' => '/funcionalidades'
+]);
+
+Route::post('/funcionalidades', [
+	'uses' => 'FuncionalidadController@store',
+	'as' => '/funcionalidades'
+]);
+
+Route::get('/funcionalidades/crear', [
+	'uses' => 'FuncionalidadController@create',
+	'as' => '/funcionalidades'
+]);
+
+Route::get('/funcionalidades/{id}',[
+	'uses' => 'FuncionalidadController@show',
+	'as' => 'funcionalidades'
+]);
+
+Route::get('/funcionalidades/editar/{id}',[
+	'uses' => 'FuncionalidadController@edit',
+	'as' => 'funcionalidades.editar'
 ]);
 
 
-/*Route::get('/listadoRoles', function(){
-	return View::make('admin/listadoRoles');
-});
+Route::put('/funcionalidades/{id}',[
+	'uses' => 'FuncionalidadController@update',
+	'as' => 'funcionalidades'
+]);
 
-Route::get('/listadoFuncionalidades', function(){
-	return View::make('admin/listadoFuncionalidades');
-});
-*/
+Route::delete('/funcionalidades/{id}',[
+	'uses' => 'FuncionalidadController@destroy',
+	'as' => 'funcionalidad.borrar'
+]);
+
+
+
+
+// UPLOADS
+
+Route::get('upload', 'UploadFilesController@index');
+
+Route::get('/upload',[
+	'uses' => 'UploadFilesController@index',
+	'as' => 'upload'
+]);
+
+
+Route::post('/upload',[
+	'uses' => 'UploadFilesController@store',
+	'as' => 'upload'
+]);

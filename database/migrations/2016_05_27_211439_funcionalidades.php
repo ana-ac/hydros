@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFuncionalidadsTable extends Migration {
+class Funcionalidades extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,10 +12,13 @@ class CreateFuncionalidadsTable extends Migration {
 	 */
 	public function up(){
 		Schema::create('funcionalidades', function(Blueprint $table){
-			$table->increments('funcionalidad_id');
+			$table->engine = 'mysql';
+			
+			$table->increments('id');
 			$table->string('nombre',50);
 			$table->string('descripcion',100)->nullable();
-			$table->timestamps('fecha_alta');
+			
+			$table->timestamps(); // obligatorio para registro de 'created_at' & 'updated_at'
 
 		});
 	}
@@ -27,7 +30,7 @@ class CreateFuncionalidadsTable extends Migration {
 	 */
 	public function down()
 	{
-		//
+		Schema::drop('funcionalidades');
 	}
 
 }

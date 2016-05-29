@@ -4,6 +4,8 @@
     <link href="/css/perfilUsuario.css" rel="stylesheet">
 @endsection
 
+@include('logs')
+
 @section('content')
     <div class="container">
       <div class="row">
@@ -13,16 +15,18 @@
    
           <div class="panel panel-info">
             <div class="panel-heading">
-              <h3 class="panel-title">Perfil de usuario</h3>
+              <h3 class="panel-title">Editar usuario</h3>
             </div>
             <div class="panel-body">
               <div class="row">
                 <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="http://babyinfoforyou.com/wp-content/uploads/2014/10/avatar-300x300.png" class="img-circle img-responsive"> </div>
 
                 <div class=" col-md-9 col-lg-9 "> 
-                    <form method="POST" action="guardarCambiosUsuario">
+                  
+                    <form method="post" action="">
+                        <input type="hidden" name="_method" value="POST">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <input type="hidden" name="_method" value="PUT">
+                        <input type="hidden" name="id" value="{{ $usuario->id  }}" />
                         <table class="table table-user-information">
                         <tbody>
                           <tr>
@@ -34,10 +38,6 @@
                             <td><input type="text" name="apellidos" value="{{ $usuario->apellidos or ''   }}" /></td>
                           </tr>
                           <tr>
-                            <td>Contraseña</td>
-                            <td><input type="password" name="contraseña" value="{{ $usuario->contraseña or ''   }}" /> </td>
-                          </tr>
-                            <tr>
                             <td>Email</td>
                             <td><input type="text" name="email" value="{{ $usuario->email or ''   }}" /></td>
                           </tr>
@@ -49,11 +49,19 @@
                             <td>Número de teléfono</td>
                             <td><input type="text" name="telefono" value="{{ $usuario->telefono or ''   }}" /></td>
                           </tr>
+                          <tr>
+                            <td>Tipo</td>
+                            <td><input type="text" name="tipo" value="{{ $usuario->tipo or ''   }}" /></td>
+                          </tr>
+                          <tr>
+                            <td>Rol</td>
+                            <td><input type="text" name="rol" value="{{ $usuario->rol or ''   }}" required/></td>
+                          </tr>
                         
                         </tbody>
                       </table>
                   <input type="submit" value="Guardar" class="btn btn-primary btn-warning pull-right" />
-                  <a href="#" class="btn btn-primary btn-danger ">Cancelar</a>
+                  <a href="{{ URL::previous() }}" class="btn btn-primary btn-danger ">Cancelar</a>
                   </form>
                 </div>
               </div>

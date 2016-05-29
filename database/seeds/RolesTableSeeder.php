@@ -9,7 +9,7 @@ class RolesTableSeeder extends Seeder{
 
         \DB::table('roles')->insert(
         array(
-            'rol_id' => 1,
+            'id' => 1,
             'nombre' => 'basico',
             'descripcion' => 'un rol basico que podrá editar documentos',
              'created_at' => Carbon::now()->format('Y-m-d H:i:s')
@@ -18,7 +18,7 @@ class RolesTableSeeder extends Seeder{
         
          \DB::table('roles')->insert(
         array(
-            'rol_id' => 2,
+            'id' => 2,
             'nombre' => 'administrativo',
             'descripcion' => 'un rol administrativo que podrá administrar eventos, es decir utilizar la agenda /calendario',
              'created_at' => Carbon::now()->format('Y-m-d H:i:s')

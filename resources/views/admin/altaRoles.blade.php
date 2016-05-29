@@ -5,31 +5,42 @@
 @endsection
 
 @section('content')
+ @if (count($errors) > 0)
+	<div class="alert alert-danger">
+		<strong>Whoops!</strong> Ha ocurrido un problema...<br><br>
+		<ul>
+			@foreach ($errors as $error)
+				<li>{{ $error }}</li>
+			@endforeach
+		</ul>
+	</div>
+@endif
+
    <div class="container">
 <div class="col-md-5">
+   
     <div class="form-area">  
-        Form::open(array('action' => 'RolController@store'))
+    {!! Form::open(['url' => 'roles']) !!}
+        
         <br style="clear:both">
                     <h3 style="margin-bottom: 25px; text-align: center;">Nuevo Rol</h3>
-    				<div class="form-group">
-						<input type="text" class="form-control" id="nombre" name="nombre" placeholder="nombre" required>
-						Form::text ('nombre', $rol->nombre)
-					</div>
+                
 					<div class="form-group">
-						<select class="form-control" id="funcionalidades" name="funcionalidades">
-						    @foreach($funcionalidades as $funcionalidad)
-						        <option value="{{ $funcionalidad->funcionalidad_id }}">{{ $funcionalidad->nombre }}</option>
-						    @endforeach
-						</select>
+                        {!! Form::text('nombre', Input::old('nombre'), array('class' => 'form-control','id' => 'nombre','placeholder' => 'nombre')) !!}
+                    </div>
+					<div class="form-group">
+					    {!! Form::select('funcionalidades', $funcionalidades , '' , array('class' => 'form-control')) !!}
 					</div>
 					
                     <div class="form-group">
-                    <textarea class="form-control" type="textarea" id="descripcion" placeholder="descripcion" maxlength="140" rows="7"></textarea>
+                   
+                    {!! Form::textarea('descripcion', Input::old('descripcion'), array('class' => 'form-control','id' => 'descripcion','maxlength' => '140', 'rows' => '7')) !!}
                         <span class="help-block"><p id="characterLeft" class="help-block ">Usted ha pasado el limite de caracteres</p></span>                    
                     </div>
             
-        <button type="button" id="submit" name="submit" class="btn btn-primary pull-right">Añadir Rol</button>
-        
+        {!! Form::submit('Crear Rol', array('class' => 'btn btn-primary pull-right','id' => 'submit')) !!}
+        {!! Form::close() !!}
+      
     </div>
 </div>
 <div class="col-md-1" >
@@ -39,7 +50,7 @@
      <div class="form-area" style="height: 458px;">  
        <h3 style="margin-bottom: 25px; text-align: center;">Funcionalidades asociadas</h3>
        <span id="list_funcionalities" ></span>
-        <a href="/altaFuncionalidades"><button type="button" style="margin-top: 316px;" id="submit" name="funcionalidad" class="btn btn-primary pull-right">Añadir Funcionalidad</button></a>
+        <a href="{{ URL::to('altaFuncionalidades') }}"><button type="button" style="margin-top: 316px;" id="submit" name="funcionalidad" class="btn btn-primary pull-right">Añadir Funcionalidad</button></a>
     </div>
 </div>
 </div>

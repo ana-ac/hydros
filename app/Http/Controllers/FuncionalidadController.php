@@ -3,7 +3,11 @@
 use hydros_final\Http\Requests;
 use hydros_final\Http\Controllers\Controller;
 use hydros_final\funcionalidad as Funcionalidad;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Redirect;
 use View;
+use Session;
 use Carbon\Carbon;
 
 use Illuminate\Http\Request;
@@ -25,9 +29,9 @@ class FuncionalidadController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function create()
-	{
-		//
+	public function create(){
+		$funcionalidad = new Funcionalidad();
+   		return View::make('admin/altaFuncionalidades')->with('funcionalidad' ,$funcionalidad);
 	}
 
 	/**
@@ -36,12 +40,28 @@ class FuncionalidadController extends Controller {
 	 * @return Response
 	 */
 	public function store(){
-		 $funcionalidad = new Funcionalidad();
-		 $funcionalidad->nombre = Input::get('nombre');
-		 $funcionalidad->descripcion = Input::get('descripcion');
-		 $funcionalidad->created_at = Carbon::now()->format('Y-m-d H:i:s')
-		 $funcionalidad->save();
-		 return Redirect::to('listadoFuncionalidades')->with('notice', 'La funcionalidad ha sido creada correctamente.');
+		$funcionalidad = new Funcionalidad();
+     	$validacion = $funcionalidad->validar(Input::all());
+        if ($validacion->passes()) {
+                
+                // store
+             $funcionalidad->nombre = Input::get('nombre');
+			 $funcionalidad->descripcion = Input::get('descripcion');
+			 $funcionalidad->created_at = Carbon::now()->format('Y-m-d H:i:s');
+			 $funcionalidad->save();
+
+            // redirect
+            Session::flash('mensaje', 'La funcionalidad '. $funcionalidad->nombre .'ha sido creada correctamente!');
+            return Redirect::to('funcionalidades');
+                
+        } else {
+        	$errores = $validacion->messages();
+             return Redirect::to('funcionalidades/crear')
+             	->withInput()
+             	->with('errores', $errores)
+                ->withErrors($validacion);
+        }
+        
 	}
 
 	/**
@@ -50,9 +70,9 @@ class FuncionalidadController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
-	{
-		//
+	public function Funcionalidad($id){
+		$funcionalidad = User::find($id);
+		//return View::make('fu')->with('user', $user);
 	}
 
 	/**
@@ -61,9 +81,9 @@ class FuncionalidadController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
-	{
-		//
+	public function edit($id){
+		$funcionalidad = Funcionalidad::find($id);
+   		return View::make('admin/editarFuncionalidades')->with('funcionalidad', $funcionalidad);
 	}
 
 	/**
@@ -72,9 +92,36 @@ class FuncionalidadController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
-	{
-		//
+	public function update($id){
+				
+		$reglas = array( /* reglas que ha de cumplir*/
+            'nombre'       => 'required',
+            'descripcion'      => 'required'
+        );
+        
+        $inputs = Input::all();
+       	$validator = Validator::make($inputs, $reglas);
+        
+        if ($validator->fails()) {
+            return Redirect::to('funcionalidades/editar/'. $id)
+            	->withInput()
+                ->withErrors($validator);
+                
+        } else {
+        	
+        	//echo 'actualizar funcionalidad ' . $id;
+            // update
+            //$funcionalidad_old = Funcionalidad::find($id);
+           	 $funcionalidad = Funcionalidad::find($id);
+			 $funcionalidad->nombre = Input::get('nombre');
+			 $funcionalidad->descripcion = Input::get('descripcion');
+			 $funcionalidad->updated_at = Carbon::now()->format('Y-m-d H:i:s');
+			 $funcionalidad->update();
+
+            // redirect
+            Session::flash('mensaje', 'La funcionalidad '. $funcionalidad->nombre .'ha sido actualizada correctamente!');
+            return Redirect::to('funcionalidades');
+        }
 	}
 
 	/**
@@ -83,9 +130,10 @@ class FuncionalidadController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
-	{
-		//
+	public function destroy($id){
+		$funcionalidad = Funcionalidad::find($id);
+   		$funcionalidad->delete();
+   		return Redirect::to('funcionalidades')->with('mensaje', 'La funcionalidad ha sido eliminada correctamente.');
 	}
 
 }

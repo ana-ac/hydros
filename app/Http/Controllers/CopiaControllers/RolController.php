@@ -32,7 +32,7 @@ class RolController extends Controller {
 	 */
 	public function create(){
 		$rol = new Rol();
-   		 $funcionalidades = [''=>'Asocia una funcionalidad ...'] + Funcionalidad::lists('nombre', 'id');
+   		 $funcionalidades = Funcionalidad::lists('nombre', 'funcionalidad_id');
    		 
    		$view = View::make('admin/altaRoles');
    		$view->rol = $rol;
@@ -47,26 +47,28 @@ class RolController extends Controller {
 	 */
 	public function store(){
 		
-      	$rol = new Rol();
-     	$validacion = $rol->validar(Input::all());
-        if ($validacion->passes()) {
-                
-                // store
-			 $rol->nombre = Input::get('nombre');
-			 $rol->descripcion = Input::get('descripcion');
-			 $rol->created_at = Carbon::now()->format('Y-m-d H:i:s');
-			 $rol->save();
+		$reglas = array(
+            'nombre'       => 'required',
+            'descripcion'      => 'required'
+        );
+       
+       $validator = Validator::make(Input::all(), $reglas);
+        
+        if ($validator->fails()) {
+            return Redirect::to('roles/crear')
+                ->withErrors($validator)
+                ->withInput(Input::except('password'));
+        } else {
+            // store
+           	$rol = new Rol();
+           	$rol->nombre = Input::get('nombre');
+			$rol->descripcion = Input::get('descripcion');
+			$rol->created_at = Carbon::now()->format('Y-m-d H:i:s');
+            $rol->save();
 
             // redirect
             Session::flash('mensaje', 'El rol '. $rol->nombre .'ha sido creado correctamente!');
             return Redirect::to('roles');
-                
-        } else {
-        	//$errores = $validacion->messages();
-             return Redirect::to('roles/crear')
-             	->withInput()
-             	//->with('errores', $errores)
-                ->withErrors($validacion);
         }
         
 		
@@ -79,8 +81,12 @@ class RolController extends Controller {
 	 * @return Response
 	 */
 	public function show($id){
-		$rol = Rol::find($id);
-		return View::make('admin/detalleRoles')->with('rol',$rol);
+		
+		 $rol = Rol::find($id);
+
+        // show the view and pass the nerd to it
+        //return View::make('nerds.show')
+            //->with('nerd', $nerd);
 	}
 
 	/**
@@ -91,7 +97,11 @@ class RolController extends Controller {
 	 */
 	public function edit($id){
 		
-	
+		 $rol = Rol::GetByTestID($id)->first();
+		//var_dump($rol);
+        // show the edit form and pass the nerd
+        return View::make('admin/editarRoles')
+            ->with('rol', $rol);
 	}
 
 	/**
@@ -113,6 +123,12 @@ class RolController extends Controller {
 	 */
 	public function destroy($id){
 		
+		 $rol = Rol::find($id);
+         $rol->delete();
+
+        // redirect
+        Session::flash('mensaje', 'El rol '. $rol->nombre .' ha sido borrado correctamente!');
+        return Redirect::to('roles');
 	}
 
 }

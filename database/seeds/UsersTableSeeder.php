@@ -9,7 +9,7 @@ class UsersTableSeeder extends Seeder{
 
         \DB::table('usuarios')->insert(
         array(
-            'usuario_id' => 1,
+            'id' => 1,
             'nombre' => 'vadim',
             'apellidos' => 'turcanu',
             'telefono' => '687458978',
@@ -23,13 +23,14 @@ class UsersTableSeeder extends Seeder{
         
         \DB::table('usuarios')->insert(
         array(
-            'usuario_id' => 2,
+            'id' => 2,
             'nombre' => 'ana',
             'apellidos' => 'arriaga',
             'telefono' => '626675887',
             'email' => 'anahydros@gmail.com',
             'contraseña' => \Hash::make('anaac'),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+            'rol' => 1,
             'tipo' => 1, //usuario administrador
             'estado' => 1 //activo
         ));

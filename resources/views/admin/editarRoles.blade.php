@@ -10,7 +10,7 @@
     <div class="form-area">  
         <form role="form">
         <br style="clear:both">
-                    <h3 style="margin-bottom: 25px; text-align: center;">Editar Rol ... </h3>
+                    <h3 style="margin-bottom: 25px; text-align: center;">Editar Rol {!! $rol->name !!} </h3>
     				<div class="form-group">
 						<input type="text" class="form-control" id="nombre" name="nombre" placeholder="nombre" required>
 					</div>

@@ -9,7 +9,7 @@ class FuncionalidadesTableSeeder extends Seeder{
 
         \DB::table('funcionalidades')->insert(
         array(
-            'funcionalidad_id' => 1,
+            'id' => 1,
             'nombre' => 'editor de texto',
             'descripcion' => 'Editor de texto enriquezido',
              'created_at' => Carbon::now()->format('Y-m-d H:i:s')
@@ -18,7 +18,7 @@ class FuncionalidadesTableSeeder extends Seeder{
         
         \DB::table('funcionalidades')->insert(
         array(
-            'funcionalidad_id' => 2,
+            'id' => 2,
             'nombre' => 'agenda/calendario',
             'descripcion' => 'agenda / calendario para la organización del usuario y alerta de eventos',
             'created_at' => Carbon::now()->format('Y-m-d H:i:s')
