@@ -1,30 +1,19 @@
 <?php namespace hydros_final;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Validator;
 
-class rol extends Model {
+class Usuario extends Model {
 
-		protected $table = 'roles';
-		protected $fillable = ['id', 'nombre','descripcion','created_at','updated_at'];
-        protected $guarded = ['id'];
+	protected $table = 'usuarios';  // La tabla con la que se relaciona
+	
+	protected $hidden = array('contraseña');
+	
+    protected $fillable = ['id', 'nombre','apellidos','telefono','email','contraseña','rol','estado','tipo','rememberToken','created_at','updated_at'];
+    // protected $guarded = ['id'];
+ 
         
-        protected  $primaryKey = 'id';
-
-
-
-
-
-       /*determinar la relacion many to many hacia la tabla funcionalidades*/
-        public function funcionalidades(){
-            return $this->belongsToMany('hydros_final\funcionalidad','Rol_Has_Funcionalidad','rol','funcionalidad');
-        }
-        
-        
-    
-        
-         //mensajes personalizados para los fallos en la validación
-     private $mensajes = array(
+/*    //mensajes personalizados para los fallos en la validación
+    private $mensajes = array(
         'nombre.required'=>'El nombre es obligatorio',
         'min'=>'Debe tener mínimo 5 caracteres',
         'nombre.max' => 'El nombre no puede tener más de 50 caracteres',
@@ -43,5 +32,6 @@ class rol extends Model {
         // return the result
         return $v;
     }
-
+    
+    */
 }

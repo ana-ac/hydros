@@ -22,7 +22,7 @@ class RolController extends Controller {
 	 */
 	public function index(){
 		$roles = Rol::all();
-		return View::make('admin/listadoRoles')->with('roles',$roles);
+		return View::make('roles.lista')->with('roles',$roles);
 	}
 
 	/**
@@ -34,7 +34,7 @@ class RolController extends Controller {
 		$rol = new Rol();
    		 $funcionalidades = [''=>'Asocia una funcionalidad ...'] + Funcionalidad::lists('nombre', 'id');
    		 
-   		$view = View::make('admin/altaRoles');
+   		$view = View::make('funcionalidades.crear');
    		$view->rol = $rol;
    		$view->funcionalidades = $funcionalidades;
    		return $view;
@@ -80,7 +80,7 @@ class RolController extends Controller {
 	 */
 	public function show($id){
 		$rol = Rol::find($id);
-		return View::make('admin/detalleRoles')->with('rol',$rol);
+		return View::make('roles.detalle')->with('rol',$rol);
 	}
 
 	/**
@@ -112,7 +112,9 @@ class RolController extends Controller {
 	 * @return Response
 	 */
 	public function destroy($id){
-		
+		$rol = Rol::find($id);
+   		$rol->delete();
+   		return Redirect::to('roles')->with('mensaje', 'El Rol ' .$rol->nombre.' ha sido eliminado correctamente.');
 	}
 
 }

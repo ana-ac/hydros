@@ -26,7 +26,8 @@ class Usuarios extends Migration {
 			$table->boolean('estado')->default(1);
 			$table->boolean('tipo')->default(0);
 
-			$table->timestamps(); // obligatorio para registro de 'created_at' & 'updated_at'			$table->rememberToken();
+			$table->timestamps(); // obligatorio para registro de 'created_at' & 'updated_at'			
+			$table->rememberToken();
 			//foreign keys
 			$table->foreign('rol')->references('id')->on('roles');
 

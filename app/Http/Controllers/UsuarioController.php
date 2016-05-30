@@ -2,7 +2,7 @@
 
 use hydros_final\Http\Requests;
 use hydros_final\Http\Controllers\Controller;
-use hydros_final\Usuario as Usuario;
+use hydros_final\usuario as Usuario;
 use hydros_final\rol as Rol;
 
 use View;
@@ -10,6 +10,7 @@ use Input;
 use Carbon\Carbon;
 use Session;
 use Redirect;
+use Log;
 
 use Illuminate\Http\Request;
 
@@ -18,7 +19,7 @@ class UsuarioController extends Controller {
 	public function index(){
 		$usuarios = Usuario::all(); // Recogemos todos los usuarios
 		
-		return View::make('admin.usuarios.listadoUsuarios')->with('usuarios', $usuarios);	
+		return View::make('usuarios.lista')->with('usuarios', $usuarios);	
 	
 	}
 
@@ -26,8 +27,13 @@ class UsuarioController extends Controller {
 	public function create()
 	{
 		$roles = Rol::lists('nombre', 'id'); // Devuelve un Array asociativo con los campos [ 'nombre_rol' => 'id_rol']
+		$usuario = Usuario::find($id);
+		return View::make('usuarios.alta')->with( [ 'usuario' => $usuario, 'roles' => $roles ] ); // Creamos la vista altaUsuario pasandole el Array asociativo de Roles
+	}
+	
+	public function usu(){
 		
-		return View::make('admin.usuarios.altaUsuario')->with('roles', $roles); // Creamos la vista altaUsuario pasandole el Array asociativo de Roles
+		return "PENE";
 	}
 
 
@@ -56,14 +62,15 @@ class UsuarioController extends Controller {
 		}catch(\Illuminate\Database\QueryException $e){			// http://stackoverflow.com/questions/26363271/laravel-check-for-constraint-violation
 			// Controlamos la excepcion de BD
 			
-			if($e->errorInfo[1]==1452) 
+			if($e->errorInfo[1]==1452)  // Violación de clave foránea inexistent e
 			{
-				Session::flash('mensaje','El usuario ' . $usuario->email . ' ya está registrado.');
+				Session::flash('mensaje','El rol "' . $usuario->rol . '" no está registrado. Por favor, elija uno existente.');
 				
 			}
-			elseif($e->errorInfo[1]==1062)// Violación de clave duplicada
+			elseif($e->errorInfo[1]==1062)// Violación de clave única duplicada
 			{
-					Session::flash('mensaje','El usuario ' . $usuario->email . ' ya está registrado.');
+				Log::info('User failed to login.', ['id' => $usuario->email]);
+				Session::flash('mensaje','El usuario ' . $usuario->email . ' ya está registrado. Por favor, introduzca un email nuevo.');
 			}
 			else
 			{
@@ -80,24 +87,26 @@ class UsuarioController extends Controller {
 			return redirect()->back()->withInput();
 		}
 		
-		return redirect('altaUsuario');
+		return redirect('usuarios');
 		
 	}
 	
 	
 	
 
-	public function show($email)
+	public function show($id)
 	{
-		$usuario = Usuario::find($email);
-		return View::make('admin.usuarios.perfilUsuario')->with('usuario', $usuario);
+
+		$usuario = Usuario::find($id);
+		return View::make('usuarios.perfil')->with('usuario', $usuario);
 	
 	}
 
-	public function edit($email)
+	public function edit($id)
 	{
-		$usuario = Usuario::find($email);
-		return View::make('admin.usuarios.editarUsuario')->with('usuario', $usuario);
+		$usuario = Usuario::find($id);
+		$roles = Rol::lists('nombre', 'id');
+		return View::make('usuarios.editar')->with(['usuario' => $usuario,'roles' => $roles]);
 	}
 
 	public function update($id)
@@ -132,7 +141,7 @@ class UsuarioController extends Controller {
 			return redirect()->back()->withInput();
 		}
 		
-		return redirect('listadoUsuarios');
+		return redirect('usuarios.lista');
 	}
 
 
@@ -151,12 +160,12 @@ class UsuarioController extends Controller {
 			
 		}catch (Exception $e){
 			// Pasamos a la sesion los campos 'message' y 'class' con los datos a manejar
-			Session::flash('mensaje','Oops... ha ocurrido un error :(');
+			Session::flash('mensaje','Oops... ha ocurrido un error:: ' . $e->getMessage());
 			Session::flash('class', 'danger');
 			
 		}
 		$usuarios = Usuario::all(); 
-		return redirect('listadoUsuarios');
+		return redirect('usuarios.lista');
 	//	return View::make('admin/listadoUsuarios')->with('usuarios', $usuarios);
 	
 	

@@ -1,4 +1,4 @@
-@extends('app')
+@extends('header')
 
 @section('css')
     	<link href="/css/listadoRoles.css" rel="stylesheet">
@@ -35,15 +35,19 @@
 			        <tr>
 			            <td>{{ $funcionalidad->id }}</td>
                         <td>{{ $funcionalidad->nombre }}</td>
-                         <td>{{ str_limit($funcionalidad->descripcion, $limit = 30, $end = '...') }}</td>
+                        <td>{{ str_limit($funcionalidad->descripcion, $limit = 30, $end = '...') }}</td>
                         <td>{{ $funcionalidad->created_at }}</td>
                         <td >{{ $funcionalidad->updated_at }}</td>
                         <td  class="text-center">
-                        		{!! Form::open(array('class' => 'form-inline', 'method' => 'GET', 'route' => array('funcionalidades.editar', $funcionalidad->id))) !!}
-                        	   		{!! Form::submit('Editar', array('class' => 'btn btn-info btn-xs')) !!}
+                        	 {!! Form::open(array('class' => 'form-inline', 'method' => 'GET', 'route' => array('funcionalidades.editar', $funcionalidad->id))) !!}
+                        	   		{!! Form::submit('Editar', array('class' => 'btn btn-success btn-xs')) !!}
                         	  {!! Form::close() !!}
                         	  
-                        	  {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('funcionalidad.borrar', $funcionalidad->id))) !!}
+                        	   {!! Form::open(array('class' => 'form-inline', 'method' => 'GET', 'route' => array('funcionalidades.detalle', $funcionalidad->id))) !!}
+                        	   		{!! Form::submit('Ver', array('class' => 'btn btn-info btn-xs')) !!}
+                        	  {!! Form::close() !!}
+                        	  
+                        	  {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('funcionalidades.eliminar', $funcionalidad->id))) !!}
                         	   		{!! Form::submit('Eliminar', array('class' => 'btn btn-danger btn-xs')) !!}
                         	  {!! Form::close() !!}
                         </td>

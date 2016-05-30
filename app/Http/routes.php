@@ -11,26 +11,11 @@
 |
 */
 
-//Route::get('/', 'HomeController@index');
-
-
-
-
+//pagina presentacion , cualquier usuario - acceso login
 Route::get('/', function(){
 	return View::make('presentacion');
 });
 
-Route::get('/perfilUsuario', function(){
-	return View::make('admin/perfilUsuario');
-});
-
-Route::get('/vadim', function(){
-	return View::make('authVadim');
-});
-
-
-
-//Route::get('home', 'HomeController@index');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
@@ -75,48 +60,66 @@ Route::post('alta', [
 									// USUARIOS USUARIOS USUARIOS
 
 // LISTADO
-Route::get('/listadoUsuarios', 'UsuarioController@index');	
+Route::get('/usuarios', [
+	'uses' => 'UsuarioController@index',
+	'as' => 'usuarios.index' 
+]);	
 
 // PERFIL
-Route::get('/perfilUsuario/{id}', 'UsuarioController@show');  
+Route::get('/usuarios/{id}',[
+	'uses' => 'UsuarioController@show',
+	'as' => 'usuarios.detalle'
+]);
 
 // EDICION
-Route::get('/editarUsuario/{id}', 'UsuarioController@edit'); 
-Route::post('/editarUsuario/{id}', 'UsuarioController@update');
+Route::get('/usuarios/editar/{id}',[
+	'uses' => 'UsuarioController@edit',
+	'as' => 'usuarios.editar'
+]);
+Route::put('/usuarios/{id}',[
+	'uses' => 'UsuarioController@update',
+	'as' => 'usuarios.actualizar'
+]);
 
 // ALTA
-Route::get('/altaUsuario', 'UsuarioController@create'); 
-Route::post('/altaUsuario', 'UsuarioController@store');
+Route::get('/usuarios/crear', [
+	'uses' => 'UsuarioController@usu',
+	'as' => 'usuarios.crear'
+]);
+Route::post('/usuarios', [
+	'uses' => 'UsuarioController@store',
+	'as' => 'usuarios.store'
+]);
 
 // BAJA
-Route::get('/bajaUsuario/{id}', 'UsuarioController@destroy');
+Route::delete('/usuarios/{id}',[
+	'uses' => 'UsuarioController@destroy',
+	'as' => 'usuarios.eliminar'
+]);
 
 Route::controller('usuario', 'UsuarioController');
 
 
 									// ROLES ROLES ROLES ROLES
 
-Route::get('roles', 'RolController@index');
-
-
 Route::get('/roles', [
 	'uses' => 'RolController@index',
-	'as' => '/roles'
+	'as' => 'roles.index'
 ]);
 
 Route::post('/roles', [
 	'uses' => 'RolController@store',
-	'as' => '/altaRoles'
+	'as' => 'roles.store'
 ]);
 
 Route::get('/roles/crear', [
 	'uses' => 'RolController@create',
-	'as' => '/altaRoles'
+	'as' => 'roles.crear'
 ]);
 
 Route::get('/roles/{id}',[
 	'uses' => 'RolController@show',
-	'as' => 'roles'
+	'as' => 'roles.detalle'
 ]);
 
 Route::get('/roles/editar/{id}',[
@@ -127,7 +130,7 @@ Route::get('/roles/editar/{id}',[
 
 Route::put('/roles/{id}',[
 	'uses' => 'RolController@update',
-	'as' => 'roles.detalle'
+	'as' => 'roles.actualizar'
 ]);
 
 Route::delete('/roles/{id}',[
@@ -140,22 +143,22 @@ Route::delete('/roles/{id}',[
 
 Route::get('/funcionalidades', [
 	'uses' => 'FuncionalidadController@index',
-	'as' => '/funcionalidades'
+	'as' => 'funcionalidades.index'
 ]);
 
 Route::post('/funcionalidades', [
 	'uses' => 'FuncionalidadController@store',
-	'as' => '/funcionalidades'
+	'as' => 'funcionalidades.store'
 ]);
 
 Route::get('/funcionalidades/crear', [
 	'uses' => 'FuncionalidadController@create',
-	'as' => '/funcionalidades'
+	'as' => 'funcionalidades.crear'
 ]);
 
 Route::get('/funcionalidades/{id}',[
 	'uses' => 'FuncionalidadController@show',
-	'as' => 'funcionalidades'
+	'as' => 'funcionalidades.detalle'
 ]);
 
 Route::get('/funcionalidades/editar/{id}',[
@@ -166,12 +169,12 @@ Route::get('/funcionalidades/editar/{id}',[
 
 Route::put('/funcionalidades/{id}',[
 	'uses' => 'FuncionalidadController@update',
-	'as' => 'funcionalidades'
+	'as' => 'funcionalidades.actualizar'
 ]);
 
 Route::delete('/funcionalidades/{id}',[
 	'uses' => 'FuncionalidadController@destroy',
-	'as' => 'funcionalidad.borrar'
+	'as' => 'funcionalidades.eliminar'
 ]);
 
 

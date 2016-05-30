@@ -21,7 +21,7 @@ class FuncionalidadController extends Controller {
 	 */
 	public function index(){
 		$funcionalidades = Funcionalidad::all();
-		return View::make('admin/listadoFuncionalidades')->with('funcionalidades',$funcionalidades);
+		return View::make('funcionalidades.lista')->with('funcionalidades',$funcionalidades);
 	}
 
 	/**
@@ -31,7 +31,7 @@ class FuncionalidadController extends Controller {
 	 */
 	public function create(){
 		$funcionalidad = new Funcionalidad();
-   		return View::make('admin/altaFuncionalidades')->with('funcionalidad' ,$funcionalidad);
+   		return View::make('funcionalidades.crear')->with('funcionalidad' ,$funcionalidad);
 	}
 
 	/**
@@ -58,8 +58,7 @@ class FuncionalidadController extends Controller {
         	$errores = $validacion->messages();
              return Redirect::to('funcionalidades/crear')
              	->withInput()
-             	->with('errores', $errores)
-                ->withErrors($validacion);
+                ->withErrors($validacion->messages());
         }
         
 	}
@@ -70,9 +69,9 @@ class FuncionalidadController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function Funcionalidad($id){
+	public function show($id){
 		$funcionalidad = User::find($id);
-		//return View::make('fu')->with('user', $user);
+		//return View::make('funcionalidad.detalle')->with('user', $user);
 	}
 
 	/**
@@ -83,7 +82,7 @@ class FuncionalidadController extends Controller {
 	 */
 	public function edit($id){
 		$funcionalidad = Funcionalidad::find($id);
-   		return View::make('admin/editarFuncionalidades')->with('funcionalidad', $funcionalidad);
+   		return View::make('funcionalidades.editar')->with('funcionalidad', $funcionalidad);
 	}
 
 	/**
@@ -133,7 +132,7 @@ class FuncionalidadController extends Controller {
 	public function destroy($id){
 		$funcionalidad = Funcionalidad::find($id);
    		$funcionalidad->delete();
-   		return Redirect::to('funcionalidades')->with('mensaje', 'La funcionalidad ha sido eliminada correctamente.');
+   		return Redirect::to('funcionalidades')->with('mensaje', 'La funcionalidad '.$funcionalidad->nombre.' ha sido eliminada correctamente.');
 	}
-
+ 
 }

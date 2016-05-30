@@ -12,7 +12,6 @@
 	<link rel="stylesheet" type="text/css" href="css/presentacion/bootstrap.min.css">
 	<link rel="stylesheet" href="fancybox/jquery.fancybox-v=2.1.5.css" type="text/css" media="screen">
     <link rel="stylesheet" href="css/presentacion/font-awesome.min.css" rel="stylesheet">
-	
 	<link rel="stylesheet" type="text/css" href="css/presentacion/style.css">	
 	
 	<link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,600,300,200&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
@@ -51,10 +50,8 @@
 	
 	<!-- === Arrows === -->
 	<div id="arrows">
-		<div id="arrow-up" class="disabled"></div>
+		<div id="arrow-up" ></div>
 		<div id="arrow-down"></div>
-		<div id="arrow-left" class="disabled visible-lg"></div>
-		<div id="arrow-right" class="disabled visible-lg"></div>
 	</div><!-- /.arrows -->
 	
 	
@@ -81,17 +78,17 @@
 	<div class="slide story" id="slide-2" data-slide="2">
 			<div class="container">
 			<div class="row title-row">
-				<div class="col-12 font-thin"><span class="font-semibold">Clients</span> we’ve worked with</div>
+				<div class="col-12 font-thin">SOBRE<span class="font-semibold"> NOSOTROS</span></div>
 			</div><!-- /row -->
 			<div class="row line-row">
 				<div class="hr">&nbsp;</div>
 			</div><!-- /row -->
 			<div class="row subtitle-row">
 				<div class="col-sm-1 hidden-sm">&nbsp;</div>
-				<div class="col-12 col-sm-10 font-light">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. <br/><br/> The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero.</div>
+				<div class="col-12 col-sm-10 font-light">Nuestra empresa ha tenido desde su comienzo una visión de futuro para el crecimiento de las empresas<br/><br/>Es un entorno organizado en el cual todos los trabajadores podrán trabajar desde su navegador, guardar sus datos en la nube y de una manera totalmente aislada. Es una muy buena solución a nivel empresarial.</div>
 				<div class="col-sm-1 hidden-sm">&nbsp;</div>
 			</div><!-- /row -->
-			<div class="row content-row">
+			<!--<div class="row content-row">
 				<div class="col-1 col-sm-1 hidden-sm">&nbsp;</div>
 				<div class="col-12 col-sm-2"><img src="images/client01.png" alt=""></div>
 				<div class="col-12 col-sm-2"><img src="images/client02.png" alt=""></div>
@@ -104,49 +101,38 @@
 	
 	</div><!-- /slide2 -->
 	
-	<!-- === SLide 3 - Portfolio -->
+	<!-- === SLide 3 - sing in -->
 <div class="slide story" id="slide-3" data-slide="3">
 		<div class="container">
-			<div class="row title-row">
-				<div class="col-12 font-thin">See us <span class="font-semibold">at work</span></div>
+			<div class="title-row">
+				<h1>Sign in</h1>
 			</div><!-- /row -->
-			<div class="row line-row">
-				<div class="hr">&nbsp;</div>
-			</div><!-- /row -->
-			<div class="row subtitle-row">
-				<div class="col-sm-1 hidden-sm">&nbsp;</div>
-				<div class="col-12 col-sm-10 font-light">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</div>
-				<div class="col-sm-1 hidden-sm">&nbsp;</div>
-			</div><!-- /row -->
-			<div class="row content-row">
-				<div class="col-sm-1 hidden-sm">&nbsp;</div>
-				<div class="col-12 col-sm-2">
-					<p><i class="icon icon-bolt"></i></p>
-					<h2 class="font-thin">Listening to<br><span class="font-semibold" >your needs</span></h2>
-					<h4 class="font-thin">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</h4>
-				</div><!-- /col12 -->
-				<div class="col-12 col-sm-2">
-					<p><i class="icon icon-cog"></i></p>
-					<h2 class="font-thin">Project<br><span class="font-semibold">discovery</span></h2>
-					<h4 class="font-thin">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</h4>
-				</div><!-- /col12 -->
-				<div class="col-12 col-sm-2">
-					<p><i class="icon icon-cloud"></i></p>
-					<h2 class="font-thin">Storming<br><span class="font-semibold">our brains</span></h2>
-					<h4 class="font-thin">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</h4>
-				</div><!-- /col12 -->
-				<div class="col-12 col-sm-2">
-					<p><i class="icon icon-map-marker"></i></p>
-					<h2 class="font-thin">Getting<br><span class="font-semibold">there</span></h2>
-					<h4 class="font-thin">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</h4>
-				</div><!-- /col12 -->
-				<div class="col-12 col-sm-2">
-					<p><i class="icon icon-gift"></i></p>
-					<h2 class="font-thin">Delivering<br><span class="font-semibold">the product</span></h2>
-					<h4 class="font-thin">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</h4>
-				</div><!-- /col12 -->
-				<div class="col-sm-1 hidden-sm">&nbsp;</div>
-			</div><!-- /row -->
+		<form class="form-horizontal" role="form">
+		    <div class="form-group">
+		      <label class="control-label col-sm-2" for="email">Email:</label>
+		      <div class="col-sm-10">
+		        <input type="email" class="form-control" id="email" placeholder="Enter email">
+		      </div>
+		    </div>
+		    <div class="form-group">
+		      <label class="control-label col-sm-2" for="pwd">Password:</label>
+		      <div class="col-sm-10">          
+		        <input type="password" class="form-control" id="pwd" placeholder="Enter password">
+		      </div>
+		    </div>
+		    <div class="form-group">        
+		      <div class="col-sm-offset-2 col-sm-10">
+		        <div class="checkbox">
+		          <label><input type="checkbox"> Remember me</label>
+		        </div>
+		      </div>
+		    </div>
+		    <div class="form-group">        
+		      <div class="col-sm-offset-2 col-sm-10">
+		        <button type="submit" class="btn btn-default">Submit</button>
+		      </div>
+		    </div>
+	  </form>
 		</div><!-- /container -->
 	</div><!-- /slide3 -->
 	
@@ -168,7 +154,7 @@
 				<div class="col-sm-1 hidden-sm">&nbsp;</div>
 				<div class="col-12 col-sm-2 with-hover-text">
 					<p><a target="_blank" href="#"><i class="icon icon-phone"></i></a></p>
-					<span class="hover-text font-light ">+34-9116461644</span></a>
+					<span class="hover-text font-light ">9-31-64-164</span></a>
 				</div><!-- /col12 -->
 				<div class="col-12 col-sm-2 with-hover-text">
 					<p><a target="_blank" href="#"><i class="icon icon-envelope"></i></a></p>
@@ -176,7 +162,7 @@
 				</div><!-- /col12 -->
 				<div class="col-12 col-sm-2 with-hover-text">
 					<p><a target="_blank" href="#"><i class="icon icon-home"></i></a></p>
-					<span class="hover-text font-light ">Madrid, <br>España</span></a>
+					<span class="hover-text font-light ">Madrid, España<br>España</span></a>
 				</div><!-- /col12 -->
 				<div class="col-12 col-sm-2 with-hover-text">
 					<p><a target="_blank" href="#"><i class="icon icon-facebook"></i></a></p>

@@ -1,4 +1,4 @@
-@extends('app')
+@extends('header')
 
 @section('css')
     	<link href="/css/altaUsuario.css" rel="stylesheet">
@@ -6,12 +6,11 @@
 
 @section('content')
     <div class="container " >
-      <div class="col-xs-12 pagination-centered">
+      <div class="col-xs-12 pagination-centered panel-">
 
-        
-              
-        <!-- <form method="post" action="altaUsuario"> -->
-        {!! Form::open(['url' => 'altaUsuario' ]) !!}
+        @include('logs')
+
+        {!! Form::open(['url' => 'usuarios.store', 'method' => 'post' ]) !!}
           <br style="clear:both">
           <h3 style="margin-bottom: 25px; text-align: center;">Nuevo Usuario</h3>
           
@@ -41,19 +40,18 @@
             </div>
              
             <div  class="form-group">
-              {!! Form::select('rol', $roles, Input::old('rol'), ['placeholder' => 'Rol del usuario', 'class' => 'form-control']) !!}   <!-- http://laravel-recipes.com/recipes/163/creating-a-select-box-field -->
+              {!! Form::select('rol',['0' => 'normal', '1' => 'administrador'], $usuario->rol, ['placeholder' => 'Rol del usuario', 'class' => 'form-control']) !!}   <!-- http://laravel-recipes.com/recipes/163/creating-a-select-box-field -->
             </div>
 
               
         {!! Form::submit('Crear Usuario', array('class' => 'btn btn-primary pull-right','id' => 'submit')) !!}
-        {!! link_to('listadoUsuarios', 'Cancelar', array('class' => 'btn btn-primary btn-danger ')) !!}
+        {!! link_to('/usuarios', 'Cancelar', array('class' => 'btn btn-primary btn-danger ')) !!}
         {!! Form::close() !!}
 
       </div>
-      @include('logs')
     </div>
 @endsection
 
 @section('javascript')
-    	<script src="js/perfilUsuario.js"></script>
+    	<script src="js/altaUsuario.js"></script>
 @endsection

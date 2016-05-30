@@ -1,16 +1,16 @@
-@extends('app')
+@extends('header')
 
 @section('css')
     	<link href="/css/altaRoles.css" rel="stylesheet">
 @endsection
 
 @section('content')
-@if (count($errores) > 0)
+@if ($errors->any())
 	<div class="alert alert-danger">
 		<strong>Whoops!</strong> Ha ocurrido un problema...<br><br>
 		<ul>
-			@foreach ($errores as $error)
-				<li>{{ $error }}</li>
+			@foreach ($errors->all() as $error)
+				<li>hola</li>
 			@endforeach
 		</ul>
 	</div>

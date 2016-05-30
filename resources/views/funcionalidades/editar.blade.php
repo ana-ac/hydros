@@ -1,4 +1,4 @@
-@extends('app')
+@extends('header')
 
 @section('css')
     	<link href="/css/altaRoles.css" rel="stylesheet">
