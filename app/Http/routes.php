@@ -65,25 +65,16 @@ Route::get('/usuarios', [
 	'as' => 'usuarios.index' 
 ]);	
 
+
 // PERFIL
 Route::get('/usuarios/{id}',[
 	'uses' => 'UsuarioController@show',
 	'as' => 'usuarios.detalle'
 ]);
 
-// EDICION
-Route::get('/usuarios/editar/{id}',[
-	'uses' => 'UsuarioController@edit',
-	'as' => 'usuarios.editar'
-]);
-Route::put('/usuarios/{id}',[
-	'uses' => 'UsuarioController@update',
-	'as' => 'usuarios.actualizar'
-]);
-
 // ALTA
 Route::get('/usuarios/crear', [
-	'uses' => 'UsuarioController@usu',
+	'uses' => 'UsuarioController@create',
 	'as' => 'usuarios.crear'
 ]);
 Route::post('/usuarios', [
@@ -91,13 +82,25 @@ Route::post('/usuarios', [
 	'as' => 'usuarios.store'
 ]);
 
+// EDICION
+Route::get('/usuarios/editar/{id}',[
+	'uses' => 'UsuarioController@edit',
+	'as' => 'usuarios.editar'
+]);
+Route::post('/usuarios/actualizar',[
+	'uses' => 'UsuarioController@update',
+	'as' => 'usuarios.actualizar'
+]);
+
+
+
 // BAJA
 Route::delete('/usuarios/{id}',[
 	'uses' => 'UsuarioController@destroy',
 	'as' => 'usuarios.eliminar'
 ]);
 
-Route::controller('usuario', 'UsuarioController');
+//Route::controller('usuario', 'UsuarioController');
 
 
 									// ROLES ROLES ROLES ROLES

@@ -10,7 +10,7 @@
 
         @include('logs')
 
-        {!! Form::open(['url' => 'usuarios.store', 'method' => 'post' ]) !!}
+        {!! Form::open(['url' => '/usuarios', 'method' => 'post' ]) !!}
           <br style="clear:both">
           <h3 style="margin-bottom: 25px; text-align: center;">Nuevo Usuario</h3>
           
@@ -23,7 +23,7 @@
             </div>
             
             <div class="form-group">
-              {!! Form::password('contraseña', Input::old('contraseña'), ['class' => 'form-control', 'id' => 'contraseña', 'placeholder' => 'Contraseña']  ) !!}
+              {!! Form::password('contraseña', ['class' => 'form-control', 'id' => 'contraseña', 'placeholder' => 'Contraseña']  ) !!}
             </div>
            
             
@@ -40,7 +40,7 @@
             </div>
              
             <div  class="form-group">
-              {!! Form::select('rol',['0' => 'normal', '1' => 'administrador'], $usuario->rol, ['placeholder' => 'Rol del usuario', 'class' => 'form-control']) !!}   <!-- http://laravel-recipes.com/recipes/163/creating-a-select-box-field -->
+              {!! Form::select('rol',$roles, null, ['placeholder' => 'Rol del usuario', 'class' => 'form-control']) !!}   <!-- http://laravel-recipes.com/recipes/163/creating-a-select-box-field -->
             </div>
 
               

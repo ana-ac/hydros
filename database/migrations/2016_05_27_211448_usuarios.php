@@ -22,7 +22,7 @@ class Usuarios extends Migration {
 			$table->integer('telefono')->nullable();
 			$table->string('email',60)->unique();
 			$table->string('contraseña',60);
-			$table->integer('rol')->unsigned()->default(1); // Si no se especifica, por defecto será 1
+			$table->integer('rol')->unsigned()->default(1); // Hace referencia a la FK || Si no se especifica, por defecto será 1
 			$table->boolean('estado')->default(1);
 			$table->boolean('tipo')->default(0);
 

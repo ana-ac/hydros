@@ -15,7 +15,7 @@
             <h3 class="panel-title">Editando el perfil del usuario {{ $usuario->nombre .' :: ' }} {{ $usuario->email }}</h3>
           </div>
           
-          {!! Form::open([ 'url' => '/usuarios/' . $usuario , 'method' => 'put' ])  !!}
+          {!! Form::open(['url' => '/usuarios/actualizar/'.$usuario->id  , 'method' => 'post' ])  !!}
           <div class="panel-body">
             <div class="col-md-3 col-lg-3 " align="center"> 
               <img alt="User Pic" src="http://www.rebiun.org/PublishingImages/iconos/Grupo.png" class="img-circle img-responsive"> 
@@ -48,7 +48,7 @@
                   <tr>    
                     <td>Email:</td>
                       <td><span class="form-group ">
-                        {!! Form::email('email', $usuario->email , ['class' => 'form-control required', 'id' => 'email', 'placeholder' => 'Email', 'required' => 'required', 'disabled']  ) !!}
+                        {!! Form::email('email', $usuario->email , ['class' => 'form-control required', 'id' => 'email', 'placeholder' => 'Email', 'required' => 'required', 'readonly']  ) !!}
                       </span></td>
                   </tr>
                   <tr>    
