@@ -16,7 +16,12 @@ Route::get('/', function(){
 	return View::make('presentacion');
 });
 
+Route::get('/admin', function(){
+	return View::make('admin/admin');
+});
 
+
+/*
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
@@ -24,7 +29,7 @@ Route::controllers([
 
 // routes of autentication
 Route::get('login', [
-	'uses' => 'Auth\AuthController@getLogin',
+	'uses' => 'Auth\AuthController@showLogin',
 	'as' => 'login'
 ]);
 
@@ -36,16 +41,13 @@ Route::post('login', [
 Route::get('logout', [
 	'uses' => 'Auth\AuthController@getLogout',
 	'as' => 'logout'
-]);
+]);*/
 
 
-							//NO COMENTAR NUNCA , SINO DA ERRORES PORQUE NO ENCUENTRA LA RUTA DE REGISTER QUE DEBE ESTRA DEFINIDA
-							// PERFECTO!! xD
-							//JAJAJJA NOS COMUNICAMOS ASI A PARTIR DE AHORA??
-							// Va! Estos son los recordatorios jajaja
+					
 // routes of register
 Route::get('alta', [
-	'uses' => 'Auth\AuthController@getRegister',
+	'uses' => 'AuthController@showLogin',
 	'as' => 'register'
 ]);
 
@@ -65,13 +67,6 @@ Route::get('/usuarios', [
 	'as' => 'usuarios.index' 
 ]);	
 
-
-// PERFIL
-Route::get('/usuarios/{id}',[
-	'uses' => 'UsuarioController@show',
-	'as' => 'usuarios.detalle'
-]);
-
 // ALTA
 Route::get('/usuarios/crear', [
 	'uses' => 'UsuarioController@create',
@@ -81,16 +76,25 @@ Route::post('/usuarios', [
 	'uses' => 'UsuarioController@store',
 	'as' => 'usuarios.store'
 ]);
+// PERFIL
+Route::get('/usuarios/{id}',[
+	'uses' => 'UsuarioController@show',
+	'as' => 'usuarios.detalle'
+]);
 
 // EDICION
 Route::get('/usuarios/editar/{id}',[
 	'uses' => 'UsuarioController@edit',
 	'as' => 'usuarios.editar'
-]);
-Route::post('/usuarios/actualizar',[
+]); 
+Route::post('/usuarios/actualizar/{id}',[
 	'uses' => 'UsuarioController@update',
 	'as' => 'usuarios.actualizar'
 ]);
+/* Route::put('/usuarios/{id}',[
+	'uses' => 'UsuarioController@update',
+	'as' => 'usuarios.actualizar'
+]);*/
 
 
 
@@ -197,3 +201,41 @@ Route::post('/upload',[
 	'uses' => 'UploadFilesController@store',
 	'as' => 'upload'
 ]);
+
+
+/*
+// Login
+Route::get('/login', [
+	'uses' => 'AuthController@showLogin',
+	'as' => 'login' 
+]);
+
+Route::post('/login', [
+	'uses' => 'AuthController@postLogin',
+	'as' => 'login'
+]);
+
+*/
+// Logeado
+Route::get('/workspace', function(){
+	return View::make('vista_usuario');
+});
+
+
+Route::get('/login', 'LoginController@getLogin');
+//Route::post('auth/login', 'Front@authenticate');
+//Route::get('auth/logout', 'Front@logout');
+
+//Route::get('custom_auth/login', 'CustomAuth@getLogin'); 
+Route::post('/login', 'LoginController@postLogin');
+
+
+// Carga Aplicaciones Json
+Route::post('/aplicaciones/prueba', [
+	'uses' => 'AplicacionesController@prueba',
+	'as' => 'aplicaciones.prueba'
+]);
+
+
+// Prueba ficheros
+Route::get('/ficheros', 'Ficheros@index');

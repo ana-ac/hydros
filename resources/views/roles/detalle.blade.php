@@ -1,12 +1,16 @@
-@extends('header')
+@extends('admin/admin')
 
 @section('css')
-    	<link href="/css/listadoRoles.css" rel="stylesheet">
-    	<link href="/css/filtrosUsuarios.css" rel="stylesheet">
+    	<link href="{{ URL::asset('css/listadoRoles.css') }}" rel="stylesheet">
+    	<link href="{{ URL::asset('css/filtrosUsuarios.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
-			
+
+ @include('logs')
+@include('admin/titulo', array('titulo' => 'Roles', 'subtitulo' => 'detalle', 'mensaje' 
+ => 'puedes ver la información del rol elegido'))
+ 
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
@@ -30,7 +34,7 @@
 			         </tr>
 			         <tr>
 			             <td>Funcionalidades Asociadas</td>
-			             <td>{{ $rol->funcionalidad }}</td>
+			            <td>{!! Form::select('funcionalidades',$funcionalidadesAsociadas,'' ,array('size' => 'S' , 'name'=>'funcionalidades', 'class' => 'form-control','id' => 'funcionalidades')) !!}</td>
 			         </tr>
 			         <tr>
 			             <td>Fecha Alta</td>

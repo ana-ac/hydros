@@ -1,5 +1,5 @@
 body {
-	background: url("/imgs/photo_bg.jpg") no-repeat center center fixed;
+	background: url("../images/photo_bg.jpg") no-repeat center center fixed;
 	background-size: cover;
 	font-size: 16px;
 	font-family: 'Lato', sans-serif;
@@ -68,7 +68,7 @@ p.small {
 
 .login-box {
 	background-color: white;
-	max-width: 550px;
+	max-width: 340px;
 	margin: 0 auto;
 	position: relative;
 	top: 80px;
@@ -79,7 +79,7 @@ p.small {
 }
 
 .login-box .box-header {
-	background-color: #737D7D;
+	background-color: #665851;
 	margin-top: 0;
 	border-radius: 5px 5px 0 0;
 }
@@ -87,7 +87,7 @@ p.small {
 .login-box label {
 	font-weight: 700;
 	font-size: .8em;
-	color: #E2A228;
+	color: #888;
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	line-height: 2em;
@@ -119,7 +119,7 @@ p.small {
 	font-weight: 400;
 	font-size: 0.7em;
 	letter-spacing: 1px;
-	background-color: #F5B42B;
+	background-color: #665851;
 	cursor:pointer;
 	outline: none;
 }
@@ -135,7 +135,7 @@ p.small {
 }
 
 .selected {
-	color: #E2A228!important;
+	color: #665851!important;
 	transition: 0.5s;
 }
 

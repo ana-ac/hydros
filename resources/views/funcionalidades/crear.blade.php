@@ -1,20 +1,14 @@
-@extends('header')
+@extends('admin/admin')
 
 @section('css')
-    	<link href="/css/altaRoles.css" rel="stylesheet">
+    	<link href="{{ URL::asset('css/altaRoles.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
-@if ($errors->any())
-	<div class="alert alert-danger">
-		<strong>Whoops!</strong> Ha ocurrido un problema...<br><br>
-		<ul>
-			@foreach ($errors->all() as $error)
-				<li>hola</li>
-			@endforeach
-		</ul>
-	</div>
-@endif
+
+@include('logs')
+@include('admin/titulo', array('titulo' => 'Funcionalidades', 'subtitulo' => 'alta', 'mensaje' 
+ => 'podrás crear nuevas funcionalidades que se quieran desarrollar para nuevos perfiles profesionales.'))
 
 <div class="container">
 <div class="col-md-12">
@@ -40,8 +34,9 @@
 </div>
 
 </div>
+
 @endsection
 
 @section('javascript')
-    	<script src="js/altaRoles.js"></script>
+    	<script src="{{ URL::asset('js/altaRoles.js') }}"></script>
 @endsection

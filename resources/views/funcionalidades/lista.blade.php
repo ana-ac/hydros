@@ -1,15 +1,12 @@
-@extends('header')
+@extends('admin/admin')
 
-@section('css')
-    	<link href="/css/listadoRoles.css" rel="stylesheet">
-    	<link href="/css/filtrosUsuarios.css" rel="stylesheet">
-@endsection
 
 @section('content')
 
-@if (Session::has('mensaje'))
-    <div class="alert alert-info">{{ Session::get('mensaje') }}</div>
-@endif
+ @include('logs')
+ @include('admin/titulo', array('titulo' => 'Funcionalidades', 'subtitulo' => 'listado', 'mensaje' 
+ => 'En esta sección podrás acceder tanto al listado de las funcionalidades como su edición, detalle y eliminación.'))
+ 
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">

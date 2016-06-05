@@ -12,6 +12,7 @@ use Session;
 use Carbon\Carbon;
 
 use Illuminate\Http\Request;
+use DB;
 
 class RolController extends Controller {
 
@@ -32,9 +33,9 @@ class RolController extends Controller {
 	 */
 	public function create(){
 		$rol = new Rol();
-   		 $funcionalidades = [''=>'Asocia una funcionalidad ...'] + Funcionalidad::lists('nombre', 'id');
+   		$funcionalidades = [''=>'Asocia una funcionalidad ...'] + Funcionalidad::lists('nombre', 'id');
    		 
-   		$view = View::make('funcionalidades.crear');
+   		$view = View::make('roles.crear');
    		$view->rol = $rol;
    		$view->funcionalidades = $funcionalidades;
    		return $view;
@@ -52,15 +53,26 @@ class RolController extends Controller {
         if ($validacion->passes()) {
                 
                 // store
+            
 			 $rol->nombre = Input::get('nombre');
 			 $rol->descripcion = Input::get('descripcion');
 			 $rol->created_at = Carbon::now()->format('Y-m-d H:i:s');
 			 $rol->save();
-
-            // redirect
+			 
+			//$funcionalidades[] = Input::get('funcionalidades');
+			foreach(Input::get('funcionalidades') as $funcionalidad){
+				
+				if($funcionalidad != ''){ // si el valor de funcionalidades no esta vacio añadimos un registro de relacion rol/funcionalidad
+				 	$f = Funcionalidad::find($funcionalidad);
+				 	$rol->funcionalidades()->save($f);
+				}
+			}
+			
+			 // redirect
             Session::flash('mensaje', 'El rol '. $rol->nombre .'ha sido creado correctamente!');
             return Redirect::to('roles');
-                
+			
+
         } else {
         	//$errores = $validacion->messages();
              return Redirect::to('roles/crear')
@@ -80,7 +92,14 @@ class RolController extends Controller {
 	 */
 	public function show($id){
 		$rol = Rol::find($id);
-		return View::make('roles.detalle')->with('rol',$rol);
+		$funcAsc = array();
+   		foreach($rol->funcionalidades as $funcionalidad){
+   			$funcAsc[$funcionalidad->id] = $funcionalidad->nombre; 
+   		}
+		$view = View::make('roles.detalle');
+   		$view->rol = $rol;
+   		$view->funcionalidadesAsociadas = $funcAsc;
+   		return $view;
 	}
 
 	/**
@@ -90,8 +109,19 @@ class RolController extends Controller {
 	 * @return Response
 	 */
 	public function edit($id){
-		
-	
+		$rol = Rol::find($id);
+   		$funcionalidades = [''=>'Asocia una funcionalidad ...'] + Funcionalidad::lists('nombre', 'id');
+   	
+   		$funcAsc = array();
+   		foreach($rol->funcionalidades as $funcionalidad){
+   			$funcAsc[] = $funcionalidad->id; 
+   		}
+   		 
+   		$view = View::make('roles.editar');
+   		$view->rol = $rol;
+   		$view->funcionalidades = $funcionalidades;
+   		$view->funcionalidadesAsociadas = $funcAsc;
+   		return $view;
 	}
 
 	/**
@@ -100,9 +130,42 @@ class RolController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
-	{
-		//
+	public function update($id){
+		
+		$reglas = array( /* reglas que ha de cumplir*/
+            'nombre'       => 'required',
+            'descripcion'      => 'required'
+        );
+        
+        $inputs = Input::all();
+       	$validator = Validator::make($inputs, $reglas);
+        
+        if ($validator->fails()) {
+            return Redirect::to('roles/editar/'. $id)
+            	->withInput()
+                ->withErrors($validator);
+                
+        } else {
+        	
+           	 $rol = Rol::find($id);
+			 $rol->nombre = Input::get('nombre');
+			 $rol->descripcion = Input::get('descripcion');
+			 $rol->update();
+				
+			DB::table('Rol_Has_Funcionalidad')->where('rol', $id)->delete();
+			 //$rol->funcionalidades()->delete();
+			foreach(Input::get('funcionalidades') as $funcionalidad){
+
+				if($funcionalidad != ''){ // si el valor de funcionalidades no esta vacio añadimos un registro de relacion rol/funcionalidad
+					$f = Funcionalidad::find($funcionalidad);
+				 	$rol->funcionalidades()->save($f);
+				}
+			}
+			
+            // redirect
+            Session::flash('mensaje', 'El rol '. $rol->nombre .'ha sido editado correctamente!');
+            return Redirect::to('roles');
+        }
 	}
 
 	/**

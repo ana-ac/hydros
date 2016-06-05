@@ -1,7 +1,7 @@
 $(document).ready(function(){
     $('.filterable .btn-filter').click(function(){
         var $panel = $(this).parents('.filterable'),
-        $filters = $panel.find('.filters input'),
+        $filters = $panel.find('.filters input:not(.nofilters)'), // Excluimos la clase .nofilters para que no filtre por ese campo
         $tbody = $panel.find('.table tbody');
         if ($filters.prop('disabled') == true) {
             $filters.prop('disabled', false);

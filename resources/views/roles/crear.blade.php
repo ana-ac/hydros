@@ -1,20 +1,14 @@
-@extends('header')
+@extends('admin/admin')
 
 @section('css')
-    	<link href="/css/altaRoles.css" rel="stylesheet">
+    	<link href="{{ URL::asset('css/altaRoles.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
- @if (count($errors) > 0)
-	<div class="alert alert-danger">
-		<strong>Whoops!</strong> Ha ocurrido un problema...<br><br>
-		<ul>
-			@foreach ($errors as $error)
-				<li>{{ $error }}</li>
-			@endforeach
-		</ul>
-	</div>
-@endif
+
+ @include('logs')
+ @include('admin/titulo', array('titulo' => 'Roles', 'subtitulo' => 'alta', 'mensaje' 
+ => 'podrás crear nuevos roles que se quieran crear para definir nuevos perfiles profesionales.'))
 
    <div class="container">
 <div class="col-md-5">
@@ -29,7 +23,7 @@
                         {!! Form::text('nombre', Input::old('nombre'), array('class' => 'form-control','id' => 'nombre','placeholder' => 'nombre')) !!}
                     </div>
 					<div class="form-group">
-					    {!! Form::select('funcionalidades', $funcionalidades , '' , array('class' => 'form-control')) !!}
+					   {!! Form::select('funcionalidades',$funcionalidades,'' ,array('size' => 'S' , 'multiple'=>'multiple','name'=>'funcionalidades[]', 'class' => 'form-control','id' => 'funcionalidades')) !!}
 					</div>
 					
                     <div class="form-group">
@@ -49,13 +43,18 @@
 <div class="col-md-5" >
      <div class="form-area" style="height: 458px;">  
        <h3 style="margin-bottom: 25px; text-align: center;">Funcionalidades asociadas</h3>
-       <span id="list_funcionalities" ></span>
-        <a href="{{ URL::to('funcionalidades/crear') }}"><button type="button" style="margin-top: 316px;" id="submit" name="funcionalidad" class="btn btn-primary pull-right">Añadir Funcionalidad</button></a>
+       <span id="list_funcionalities" >
+          
+       </span>
+        <a href="{{ URL::to('funcionalidades/crear') }}"><button type="button" style="position: absolute;bottom: 85px;right: 45px;" id="submit" name="funcionalidad" class="btn btn-primary pull-right">Añadir Funcionalidad</button></a>
     </div>
 </div>
 </div>
+
+
 @endsection
 
+
 @section('javascript')
-    	<script src="js/altaRoles.js"></script>
+    	<script src="{{ URL::asset('js/altaRoles.js') }}"></script>
 @endsection

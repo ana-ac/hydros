@@ -555,6 +555,12 @@ body {
 	z-index: 1000;
 }
 
+input[type="checkbox"]{
+	margin-left: -20px !important;
+    top: 2px !important;
+    float:none !important;
+}
+
 #arrows div {
 	background-image: url('../../images/website-arrows.png');
 	cursor: pointer;

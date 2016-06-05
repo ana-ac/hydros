@@ -1,0 +1,119 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+/* TODOS LOS ELEMENTOS QUE NECESITEN SOMBRA DE CAJA*/
+
+#fondo_barra_nav, .ventana_aplicacion, .ventana_sobreada{
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,1);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,1);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,1);
+}
+
+#fondo_barra_nav, #barra_nav {
+    position: absolute;
+    width: 100%;
+    height: 55px;
+    top:0;
+}
+
+#fondo_barra_nav{
+    background-color: white;
+    opacity: 0.4;
+    filter: alpha(opacity=40); /* For IE8 and earlier */
+    z-index: 0;
+    
+}
+#barra_nav {
+     z-index: 1;
+     box-shadow: 3px 0px 12px #797979;
+     background-color: #313035;
+}
+    #barra_nav_menu{
+        margin-right:5px;
+        width: 70px;
+        height: 100%;
+        float:left;
+    }
+    
+        #barra_nav_menu img{
+            width: 100%;
+            height: 100%;
+        }
+    
+    #barra_nav_menu:hover > img {
+        
+        -webkit-animation: rotar 1s ease; /* Chrome, Safari, Opera */
+            animation: rotar 1s ease;
+    }
+    
+    /* Chrome, Safari, Opera */
+    @-webkit-keyframes rotar {
+        100% {transform: rotate(180deg);}
+    }
+    
+    /* Standard syntax */
+    @keyframes rotar {
+        100% {transform: rotate(180deg);}
+    }
+    
+    #barra_nav_hora{
+        height: 100%;
+        float: right;
+        margin-right: 5px;
+        text-align: center;
+    }
+    
+#barra_nav div{
+  float: left;
+    width: 65px;
+    height: 95%;
+    text-align: center;
+    cursor: pointer;
+    vertical-align: middle;
+    position: relative;
+    top: 9%;
+}
+
+.aplicacion img{
+    height: 85%;
+}
+
+
+ /* VENTANA PRINCIPAL */
+#ventana{
+
+    background-color: whit;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: url("../images/fondo3.jpg") no-repeat center center fixed; 
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      
+    overflow: hidden;
+
+}
+
+.resize-drag {
+  background-color: #29e;
+  color: white;
+  font-size: 20px;
+  font-family: sans-serif;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 30px 20px;
+
+  width: 120px;
+
+  /* This makes things *much* easier */
+  box-sizing: border-box;
+}
+
+.resize-container {
+  width: 100%;
+  height: 240px;
+}
+

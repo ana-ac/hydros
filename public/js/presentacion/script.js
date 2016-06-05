@@ -135,7 +135,7 @@ var delay = (function(){
 
 function menu_focus( element, i ) {
 	if ( $(element).hasClass('active') ) {
-		if ( i == 4 ) {
+		if ( i == 6 ) {
 			if ( $('.navbar').hasClass('inv') == false )
 				return;
 		} else {
@@ -145,7 +145,7 @@ function menu_focus( element, i ) {
 	
 	enable_arrows( i );
 		
-	if ( i == 1 || i == 4 )
+	if ( i == 1 || i == 6 )
 		$('.navbar').removeClass('inv');
 	else
 		$('.navbar').addClass('inv');
@@ -173,10 +173,13 @@ function enable_arrows( dataslide ) {
 	if ( dataslide != 1 ) {
 		$('#arrow-up').removeClass('disabled');
 	}
-	if ( dataslide != 4 ) {
+	if ( dataslide != 6 ) {
 		$('#arrow-down').removeClass('disabled');
 	}
-
+	if ( dataslide == 3 ) {
+		$('#arrow-left').removeClass('disabled');
+		$('#arrow-right').removeClass('disabled');
+	}
 }
 
 /*************
@@ -202,7 +205,10 @@ jQuery(document).ready(function ($) {
 	
 	//When the user clicks on the navigation links, get the data-slide attribute value of the link and pass that variable to the goToByScroll function
 	links.click(function (e) {
-		e.preventDefault();
+
+		if(this.id != 'submit'){
+			e.preventDefault();
+	   }
 		dataslide = $(this).attr('data-slide');
 		goToByScroll(dataslide);
 		$(".nav-collapse").collapse('hide');
@@ -210,8 +216,11 @@ jQuery(document).ready(function ($) {
 	
 	//When the user clicks on the navigation links, get the data-slide attribute value of the link and pass that variable to the goToByScroll function
 	$('.navigation-slide').click(function (e) {
-		e.preventDefault();
-		dataslide = $(this).attr('data-slide');
+		if(this.id != 'submit'){
+			e.preventDefault();
+	    }	
+	    
+	    dataslide = $(this).attr('data-slide');
 		goToByScroll(dataslide);
 		$(".nav-collapse").collapse('hide');
 	});
@@ -244,6 +253,41 @@ jQuery(document).ready(function ($) {
 	);
 });
 
+/******************
+* = Gallery hover *
+******************/
+jQuery(document).ready(function ($) {
+	//Cache some variables
+	var images = $('#slide-3 a');
+	
+	images.hover(
+		function(e) {
+			var asta = $(this).find('img');
+			$('#slide-3 img').not( asta ).stop(false, false).animate(
+				{
+					opacity: .5
+				},
+				'fast',
+				'linear'
+			);
+			var zoom = $('<div class="zoom"></div>');
+			if ( $(this).hasClass('video') ) {
+				zoom.addClass('video');
+			}
+			$(this).prepend(zoom);
+		},
+		function(e) {
+			$('#slide-3 img').stop(false, false).animate(
+				{
+					opacity: 1
+				},
+				'fast',
+				'linear'
+			);
+			$('.zoom').remove();
+		}
+	);
+});
 
 /******************
 * = Arrows click  *
@@ -253,8 +297,10 @@ jQuery(document).ready(function ($) {
 	var arrows = $('#arrows div');
 	
 	arrows.click(function(e) {
-		e.preventDefault();
-		
+	   if(this.id != 'submit'){
+			e.preventDefault();
+	   }
+	   	
 		if ( $(this).hasClass('disabled') )
 			return;
 		
@@ -271,6 +317,18 @@ jQuery(document).ready(function ($) {
 			case 'arrow-down':
 				offset_top = $('.slide[data-slide="' + (datasheet+1) + '"]').offset().top;
 				break;
+			case 'arrow-left':
+				offset_left = $('#slide-3 .row').offset().left + 452;
+				if ( offset_left > 0 ) {
+					offset_left = '0px';
+				}
+				break;
+			case 'arrow-right':
+				offset_left = $('#slide-3 .row').offset().left - 452;
+				if ( offset_left < $('body').width() - $('#slide-3 .row').width() ) {
+					offset_left = $('body').width() - $('#slide-3 .row').width();
+				}
+				break;
 		}
 		
 		if ( offset_top != false ) {
@@ -279,5 +337,12 @@ jQuery(document).ready(function ($) {
 			}, 1500, 'easeInOutQuart');
 		}
 		
+		if ( offset_left != false ) {
+			if ( $('#slide-3 .row').width() != $('body').width() ) {
+				$('#slide-3 .row').stop(false, false).animate({
+					left: offset_left
+				}, 1500, 'easeInOutQuart');
+			}
+		}
 	});
 });

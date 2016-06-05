@@ -4,14 +4,11 @@
              {!! Session::get('mensaje')!!}
         </div>
     </div>
-    
-    @if (count($errors) > 0)
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    {{ $error }}<br/>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+@endif
+@if ($errors->any())
+    <div class="alert alert-danger">
+        @foreach ($errors->all() as $error)
+            {{ $error }}<br/>
+        @endforeach
+    </div>
 @endif

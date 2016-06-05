@@ -1,4 +1,4 @@
-@extends('app')
+@extends('header')
 
 @section('content')
 <div class="container-fluid">
@@ -9,7 +9,7 @@
 				<div class="panel-body">
 					@if (count($errors) > 0)
 						<div class="alert alert-danger">
-							<strong>Whoops!</strong> There were some problems with your input.<br><br>
+							<strong>Whoops!</strong>Ha ocurrido un problema<br><br>
 							<ul>
 								@foreach ($errors->all() as $error)
 									<li>{{ $error }}</li>
@@ -31,7 +31,7 @@
 						<div class="form-group">
 							<label class="col-md-4 control-label">Password</label>
 							<div class="col-md-6">
-								<input type="password" class="form-control" name="contraseña">
+								<input type="password" class="form-control" name="clave">
 							</div>
 						</div>
 

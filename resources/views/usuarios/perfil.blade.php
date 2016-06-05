@@ -1,10 +1,15 @@
-@extends('header')
+@extends('admin/admin')
 
 @section('css')
-    <link href="/css/perfilUsuario.css" rel="stylesheet">
+    <link href="{{ URL::asset('css/perfilUsuario.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
+
+ @include('logs')
+@include('admin/titulo', array('titulo' => 'Usuario', 'subtitulo' => 'detalle', 'mensaje' 
+ => 'puedes ver la información del usuario elegido'))
+ 
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
@@ -49,13 +54,9 @@
                     <td>{{ $usuario->tipo  }}</td>
                   </tr>
                   <tr>
-                    <td>Fecha de alta</td>
-                    @if($usuario->created_at != null)
-  								    <td>{{ $usuario->created_at }}</td>
-  						    	@else
-  								    <td><span class="center" > - </span></td>
-  							    @endif
-							    </tr>
+                    <td>Roll</td>
+                    <td>{{ $usuario->rol }}</td>
+  						    </tr>
 							    <tr>
 							      <td>Estado</td>
   							    @if($usuario->estado == 1)
@@ -87,5 +88,5 @@
 @endsection
 
 @section('javascript')
-    	<script src="js/perfilUsuario.js"></script>
+    	<script src="{{ URL::asset('js/perfilUsuario.js') }}"></script>
 @endsection

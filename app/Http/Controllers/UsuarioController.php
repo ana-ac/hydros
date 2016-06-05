@@ -40,9 +40,9 @@ class UsuarioController extends Controller {
 		$usuario = new Usuario;
 		
 		$validacion = $usuario->validar(Input::all());
-									var_dump("<H1>ERROR</H1>");
+							//		var_dump($validacion);
 
-		if($validacion->passes()){
+		if(!$validacion->fails()){
 			// Guardamos el usuario con sus datos y pillamos el estado del guardado
 			try{
 				$usuario->email = Input::get('email');
@@ -64,30 +64,31 @@ class UsuarioController extends Controller {
 				return redirect('/usuarios');
 				
 			}catch(\Illuminate\Database\QueryException $e){	// Controlamos la excepcion de BD http://stackoverflow.com/questions/26363271/laravel-check-for-constraint-violation
-				$errores[] .= 'HA OCURRIDO UN ERROR DE BASE DE DATOS' ;
+				$errores = 'HA OCURRIDO UN ERROR DE BASE DE DATOS<br/>' ;
 
 				if($e->errorInfo[1]==1452)  // Violación de clave foránea inexistente
 				{
-					$errores[] .= 'El rol "' . $usuario->rol . '" no está registrado. Por favor, elija uno existente.';
+					$errores .= 'El rol "' . $usuario->rol . '" no está registrado. Por favor, elija uno existente.';
 					
 				}
 				elseif($e->errorInfo[1]==1062)// Violación de clave única duplicada
 				{
-					$errores[] .= 'El usuario ' . $usuario->email . ' ya está registrado. Por favor, introduzca un email nuevo.';
+					$errores .= 'El usuario ' . $usuario->email . ' ya está registrado. Por favor, introduzca un email nuevo.';
 				}
 				else
 				{
-					$errores[] .= 'ERROR: ' . $e->errorInfo[1]  . '\n\n' . $e->errorInfo[2];
+					$errores .= 'ERROR: ' . $e->errorInfo[1]  . '\n\n' . $e->errorInfo[2];
 				}
-				
+				Session::flash('mensaje', $errores);
+				Session::flash('class', 'danger');
 				return redirect()->back()->withInput()->withErrors($errores);
 				
 			}catch (Exception $e){
 				return redirect()->back()->withInput()->withErrors(['Oops... ha ocurrido un error :(' . $e->getCode() .'):']);
 			}
 		}else{
-			return  redirect()->back()->withInput()->withErrors($validacion);	
-		
+			return  redirect()->back()->withInput()->withErrors($validacion->messages());	
+	
 		}
 		
 		

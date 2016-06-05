@@ -1,10 +1,11 @@
-<?php namespace hydros_final\Http\Controllers\Auth;
+<?php namespace hydros_final\Http\Controllers;
 
 use hydros_final\Http\Controllers\Controller;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
+use View;
 class AuthController extends Controller {
 
 	/*
@@ -44,7 +45,39 @@ class AuthController extends Controller {
 	 */
 	public function loginPath()
 	{
-		return Route('login');
+		return Route('/login');
 	}
-
+	
+	
+	public function showLogin(){
+		
+		return View::make('vista_usuario');
+	}
+	
+	public function postLogin()
+	{
+ 
+		//recogemos los campos del formulario y los guardamos en un array
+		//para pasarselo al método Auth::attempt
+		$userdata = array(
+ 
+			'email' => Input::get('email'),
+			'password'=> Input::get('password')
+ 
+		); 
+ 
+		//si los datos son correctos y existe un usuario con los mismos se inicia sesión
+		//y redirigimos a la home
+		if(Auth::attempt($userdata, true))
+		{
+ 
+			return Redirect::to('/usuarios');
+ 
+		}else{
+			//en caso contrario mostramos un error
+			return Redirect::to('login')->with('error_login', true);
+ 
+		}
+ 
+	}
 }

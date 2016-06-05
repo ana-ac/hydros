@@ -36,9 +36,10 @@ class FuncionalidadController extends Controller {
 
 	/**
 	 * Store a newly created resource in storage.
-	 *
+	 **
 	 * @return Response
 	 */
+	 
 	public function store(){
 		$funcionalidad = new Funcionalidad();
      	$validacion = $funcionalidad->validar(Input::all());
@@ -55,7 +56,7 @@ class FuncionalidadController extends Controller {
             return Redirect::to('funcionalidades');
                 
         } else {
-        	$errores = $validacion->messages();
+        	//$errores = $validacion->messages();
              return Redirect::to('funcionalidades/crear')
              	->withInput()
                 ->withErrors($validacion->messages());
@@ -70,8 +71,16 @@ class FuncionalidadController extends Controller {
 	 * @return Response
 	 */
 	public function show($id){
-		$funcionalidad = User::find($id);
-		//return View::make('funcionalidad.detalle')->with('user', $user);
+		$funcionalidad = Funcionalidad::find($id);
+		
+		$RolesAsc = array();
+   		foreach($funcionalidad->roles as $rol){
+   			$RolesAsc[$rol->id] = $rol->nombre; 
+   		}
+		$view = View::make('funcionalidades.detalle');
+   		$view->funcionalidad = $funcionalidad;
+   		$view->rolesAsociados = $RolesAsc;
+   		return $view;
 	}
 
 	/**

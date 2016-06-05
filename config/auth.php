@@ -28,7 +28,7 @@ return [
 	|
 	*/
 
-	'model' => 'hydros_final\Models\Usuario',
+	'model' => 'hydros_final\usuario',
 
 	/*
 	|--------------------------------------------------------------------------

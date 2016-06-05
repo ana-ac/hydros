@@ -3,5 +3,5 @@
 
 git init
 git add .
-git commit -m "COMENTARIO" 
+git commit -m "COMMIT DE SEGURIDAD" 
 git push -u origin master

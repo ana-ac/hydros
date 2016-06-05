@@ -15,10 +15,11 @@ class RolHasFuncionalidad extends Migration {
 		
 		
 			$table->integer('rol')->unsigned()->index();
-            $table->integer('funcionalidad')->unsigned()->index();
+			$table->integer('funcionalidad')->unsigned()->index();
             
             $table->foreign('rol')->references('id')->on('roles')
             ->onUpdate('cascade')->onDelete('cascade');
+            
             $table->foreign('funcionalidad')->references('id')->on('funcionalidades')
             ->onUpdate('cascade')->onDelete('cascade');
 			

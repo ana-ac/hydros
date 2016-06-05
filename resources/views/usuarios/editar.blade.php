@@ -1,10 +1,12 @@
-@extends('header')
+@extends('admin/admin')
 
 @section('css')
-    <link href="/css/perfilUsuario.css" rel="stylesheet">
+    <link href="{{ URL::asset('css/perfilUsuario.css') }}" rel="stylesheet">
 @endsection
 
 @include('logs')
+ @include('admin/titulo', array('titulo' => 'Usuarios', 'subtitulo' => 'edición', 'mensaje' 
+  => 'podrás editar los datos personales del usuario elegido'))
 
 @section('content')
 <div class="container">
@@ -92,5 +94,5 @@
 @endsection
 
 @section('javascript')
-    	<script src="js/perfilUsuario.js"></script>
+    	<script src="{{ URL::asset('js/perfilUsuario.js') }}"></script>
 @endsection

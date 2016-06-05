@@ -1,0 +1,50 @@
+#ventana .ventana_aplicacion {
+    min-width:400px;
+    min-height: 500px;
+    width: 50%;
+    height: 50%;
+    
+    position:absolute;
+    background-color: white;
+    
+    top: 25%;
+    left: 25%;
+    overflow: hidden;
+    resize: both;
+    
+
+}
+
+
+
+.ventana_aplicacion .navegacion{
+    width: 100%;
+    height: 50px;
+    padding: 5px;
+    background: #41434D;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+    .ventana_aplicacion .navegacion img{
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        top: 5px;
+        right: 20px;
+    }
+
+.ventana_aplicacion .contenedor{
+    color:black;
+    width: 100%;
+    height: 100%;
+    top:50px;
+    left:0;
+    position:absolute;
+    margin:0;
+    padding:0;
+    
+
+   
+}

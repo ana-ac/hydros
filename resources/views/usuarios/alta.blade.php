@@ -1,14 +1,18 @@
-@extends('header')
+@extends('admin/admin')
 
 @section('css')
-    	<link href="/css/altaUsuario.css" rel="stylesheet">
+    	<link href="{{ URL::asset('css/altaUsuario.css') }}" rel="stylesheet">
 @endsection
+
+@include('logs')
+
+ @include('admin/titulo', array('titulo' => 'Usuarios', 'subtitulo' => 'alta', 'mensaje' 
+ => 'podrás dar de alta a nuevos usuarios que quieras que pertenezcan a tu área en la empresa. Podrás personalizarlos con roles y funcionalidades propias.'))
 
 @section('content')
     <div class="container " >
       <div class="col-xs-12 pagination-centered panel-">
-
-        @include('logs')
+        
 
         {!! Form::open(['url' => '/usuarios', 'method' => 'post' ]) !!}
           <br style="clear:both">
@@ -53,5 +57,6 @@
 @endsection
 
 @section('javascript')
-    	<script src="js/altaUsuario.js"></script>
+    	<script src="{{ URL::asset('js/altaUsuario.js') }}"></script>
 @endsection
+

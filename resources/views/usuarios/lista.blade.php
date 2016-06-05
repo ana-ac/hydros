@@ -1,15 +1,18 @@
-@extends('header')
+@extends('admin/admin')
 
 @section('css')
-    	<link href="/css/filtrosUsuarios.css" rel="stylesheet">
+    	<link href="{{ URL::asset('css/filtrosUsuarios.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
 
+@include('logs')
+@include('admin/titulo', array('titulo' => 'Usuarios', 'subtitulo' => 'listado', 'mensaje' 
+=> 'Binevenido al panel de administración! podrás ver un menú a la izquierda de la pantalla en el cual podrás investigar todas las posibilidades que tienes para manejar a tu antojo esta plataforma. Disfruta y mucha suerte!!'))
+
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
-			@include('logs')
 
 	        <div class="panel panel-primary filterable" id="style_div_users" >
 	            <div class="panel-heading" id="header_users" >
@@ -21,34 +24,44 @@
 	            <table class="table">
 	                <thead>
 	                    <tr class="filters">
-	                        <th><input type="text" class="form-control" placeholder="id" disabled></th>
-	                        <th><input type="text" class="form-control" placeholder="nombre" disabled></th>
-	                        <th><input type="text" class="form-control" placeholder="apellidos" disabled></th>
-	                        <th><input type="text" class="form-control" placeholder="email" disabled></th>
-	                        <th><input type="text" class="form-control" placeholder="fecha alta" disabled></th>
-	                        <th><input type="text" class="form-control" placeholder="estado" disabled></th>
-	                        <th><input type="text" class="form-control text-center" placeholder="Acción" disabled></th>
+	                        <th><input type="text" class="form-control text-center" placeholder="id" disabled></th>
+	                        <th><input type="text" class="form-control text-center" placeholder="nombre" disabled></th>
+	                        <th><input type="text" class="form-control text-center" placeholder="apellidos" disabled></th>
+	                        
+	                        <th><input type="text" class="form-control text-center" placeholder="telefono" disabled></th>
+
+	                        <th><input type="text" class="form-control text-center" placeholder="email" disabled></th>
+	                        <th><input type="text" class="form-control text-center" placeholder="fecha alta" disabled></th>
+	                        
+							<th><input type="text" class="form-control text-center" placeholder="rol" disabled></th>
+
+	                        <th><input type="text" class="form-control text-center nofilters" placeholder="estado" disabled></th>
+	                        <th><input type="text" class="form-control text-center nofilters" placeholder="Acción" disabled></th>
 	                    </tr>
 	                </thead>
 	                <tbody>
 					@foreach($usuarios as $usuario)
 						<tr>
-							<td>{{ $usuario->id }}</td>
-							<td>{{ $usuario->nombre }} </td>
-							<td>{{ $usuario->apellidos }}</td>
-							<td>{{ $usuario->email }} </td>
-							@if($usuario->created_at != null)
-								<td>{{ $usuario->created_at }}</td>
-							@else
-								<td><span class="center" > - </span></td>
-							@endif
-							
-							@if($usuario->estado == 1)
-							    <td><span class="label label-success">Activo</span></td>
-						    @else
-						        <td><span class="label label-warning">Inactivo</span></td>
-					        @endif
-					         
+							<td class="text-center"  >{{ $usuario->id }}</td>
+							<td class="text-center" >{{ $usuario->nombre }}</td>
+							<td class="text-center" >{{ $usuario->apellidos }}</td>
+							<td class="text-center" >{{ $usuario->telefono }}</td>
+							<td class="text-center" >{{ $usuario->email }}</td>
+							<td class="text-center" >
+								@if($usuario->created_at != null)
+									{{ $usuario->created_at }}
+								@else
+									 - 
+								@endif
+							</td>
+							<td class="text-center" >{{ $usuario->rol }}</td>
+							<td class="text-center" >
+								@if($usuario->estado == 1)
+								    <span class="label label-success">Activo</span>
+							    @else
+								     <span class="label label-warning">Inactivo</span>
+						        @endif
+					         </td>
 					         <td  class="text-center">
                         	  {!! Form::open(array('class' => 'form', 'method' => 'GET', 'route' => array('usuarios.editar', $usuario->id ))) !!}
                         	   		{!! Form::submit('Editar', array('class' => 'btn btn-success btn-xs ')) !!}
@@ -77,5 +90,5 @@
 @endsection
 
 @section('javascript')
-	<script src="js/filtrosUsuarios.js"></script>
+	<script src="{{ URL::asset('js/filtrosUsuarios.js') }}"></script>
 @endsection

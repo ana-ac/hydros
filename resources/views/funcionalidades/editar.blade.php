@@ -1,20 +1,14 @@
-@extends('header')
+@extends('admin/admin')
 
 @section('css')
-    	<link href="/css/altaRoles.css" rel="stylesheet">
+    	<link href="{{ URL::asset('css/altaRoles.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
-@if (count($errors) > 0)
-	<div class="alert alert-danger">
-		<strong>Whoops!</strong> Ha ocurrido un problema...<br><br>
-		<ul>
-			@foreach ($errors as $error)
-				<li>{{ $error }}</li>
-			@endforeach
-		</ul>
-	</div>
-@endif
+
+@include('logs')
+@include('admin/titulo', array('titulo' => 'Funcionalidades', 'subtitulo' => 'edición', 'mensaje' 
+ => 'podrás editar datos de alguna funcionalidad ya existente o añadir algunos extra.'))
 <div class="container">
 <div class="col-md-12">
     <div class="form-area"> 
@@ -35,7 +29,7 @@
                       {!! Form::hidden ('_method', 'PUT') !!}
                      @endif
             
-             {!! Form::submit('Actualizar Funcionalidad', array('class' => 'btn btn-primary pull-right','id' => 'submit')) !!}
+             {!! Form::submit('Editar Funcionalidad', array('class' => 'btn btn-primary pull-right','id' => 'submit')) !!}
              {!! Form::close() !!}
         </form>
     </div>
@@ -45,5 +39,5 @@
 @endsection
 
 @section('javascript')
-    	<script src="js/altaRoles.js"></script>
+    	<script src="{{ URL::asset('js/altaRoles.js') }}"></script>
 @endsection
