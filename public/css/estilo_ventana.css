@@ -3,18 +3,15 @@
     min-height: 500px;
     width: 50%;
     height: 50%;
-    
     position:absolute;
     background-color: white;
-    
-    top: 25%;
-    left: 25%;
+    top: 16%;
+    left: 15%;
     overflow: hidden;
     resize: both;
-    
+    cursor: pointer;
 
 }
-
 
 
 .ventana_aplicacion .navegacion{
@@ -27,24 +24,31 @@
     left: 0;
 }
 
+.ventana_aplicacion .navegacion span{
+    margin-left: 16px;
+    font-family: oswlad;
+    font-size: 26px;
+}
+
     .ventana_aplicacion .navegacion img{
-        width: 20px;
-        height: 20px;
-        position: absolute;
-        top: 5px;
-        right: 20px;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    cursor: pointer;
     }
 
 .ventana_aplicacion .contenedor{
     color:black;
-    width: 100%;
+    width: 94%;
     height: 100%;
-    top:50px;
     left:0;
     position:absolute;
-    margin:0;
+    margin:15px;
     padding:0;
     
 
    
 }
+

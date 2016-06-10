@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
+use hydros_final\usuario as Usuario;
+use Hash;
 
 class Usuario extends Model{
 	protected $table = 'usuarios';  // La tabla con la que se relaciona
@@ -38,6 +40,40 @@ class Usuario extends Model{
         // return the result
        return $v;
         
+    }
+    
+      public static function login($email, $clave) {
+        $usuario = Usuario::whereEmail($email)->first();
+        if ( $usuario ){
+            if ( Hash::check($clave, $usuario->contraseña) ) {
+                return $usuario;
+            } else {
+                return null;
+            }
+        }else{
+             return null;
+        }
+    }
+    
+      public static function isAdmin($user) {
+       $tipoUsuario = $user->tipo;
+       if($tipoUsuario == 0) //usuario normal
+            return false;
+        else
+            return true;
+        }
+        
+    public static function findByEmail($email){
+        $usuario = Usuario::whereEmail($email)->first();
+        if(!is_null($usuario)){
+            return $usuario;
+        }else{
+            return null;
+        }
+    }
+    
+     public function rol(){
+        return $this->belongsTo('hydros_final\rol');
     }
     
     

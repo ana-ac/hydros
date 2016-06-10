@@ -3,26 +3,28 @@
 use hydros_final\Http\Requests;
 use hydros_final\Http\Controllers\Controller;
 use Illuminate\Contracts\Filesystem\Filesystem;
+use hydros_final\funcionalidad as Funcionalidad;
+
 use Storage;
 use Illuminate\Http\Request;
+use View;
 
 class AplicacionesController extends Controller {
-	
-	public function prueba(){
-		//return response()->json(['datos' => 'HOLA MUNDO']);
-		$files = Storage::allFiles("/");
-		
-		return response()->json(['datos' => $files]);
-	}
 	
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index($id)
 	{
-		//
+		if($id != 0){
+			$funcionalidad = Funcionalidad::find($id); // Devuelve un Array asociativo con los campos [ 'id_funcionalidad' => 'nombre_funcionalidad']
+			return redirect()->to(str_replace(array(' ','/'), '', $funcionalidad->nombre));
+		}else{
+			// Redireccionar al controlador correspondiente a la funcionalidad
+			return redirect()->to('/ficheros');
+		}
 	}
 
 	/**

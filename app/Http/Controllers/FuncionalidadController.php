@@ -43,15 +43,18 @@ class FuncionalidadController extends Controller {
 	public function store(){
 		$funcionalidad = new Funcionalidad();
      	$validacion = $funcionalidad->validar(Input::all());
-        if ($validacion->passes()) {
+     	
+         if ($validacion->passes()) {
                 
-                // store
+              // store
              $funcionalidad->nombre = Input::get('nombre');
 			 $funcionalidad->descripcion = Input::get('descripcion');
 			 $funcionalidad->created_at = Carbon::now()->format('Y-m-d H:i:s');
+			 $funcionalidad->icono = Input::get('icono');
 			 $funcionalidad->save();
 
             // redirect
+            Session::flash('claseMensaje','info');
             Session::flash('mensaje', 'La funcionalidad '. $funcionalidad->nombre .'ha sido creada correctamente!');
             return Redirect::to('funcionalidades');
                 
@@ -72,11 +75,15 @@ class FuncionalidadController extends Controller {
 	 */
 	public function show($id){
 		$funcionalidad = Funcionalidad::find($id);
-		
 		$RolesAsc = array();
    		foreach($funcionalidad->roles as $rol){
    			$RolesAsc[$rol->id] = $rol->nombre; 
    		}
+   		if(count($RolesAsc) == 0){
+   			unset($RolesAsc);
+   			$RolesAsc[0] = 'No tiene roles asociados';
+   		}
+   		
 		$view = View::make('funcionalidades.detalle');
    		$view->funcionalidad = $funcionalidad;
    		$view->rolesAsociados = $RolesAsc;
@@ -123,10 +130,12 @@ class FuncionalidadController extends Controller {
            	 $funcionalidad = Funcionalidad::find($id);
 			 $funcionalidad->nombre = Input::get('nombre');
 			 $funcionalidad->descripcion = Input::get('descripcion');
+			  $funcionalidad->icono = Input::get('icono');
 			 $funcionalidad->updated_at = Carbon::now()->format('Y-m-d H:i:s');
 			 $funcionalidad->update();
 
             // redirect
+            Session::flash('claseMensaje','info');
             Session::flash('mensaje', 'La funcionalidad '. $funcionalidad->nombre .'ha sido actualizada correctamente!');
             return Redirect::to('funcionalidades');
         }
@@ -140,8 +149,14 @@ class FuncionalidadController extends Controller {
 	 */
 	public function destroy($id){
 		$funcionalidad = Funcionalidad::find($id);
-   		$funcionalidad->delete();
-   		return Redirect::to('funcionalidades')->with('mensaje', 'La funcionalidad '.$funcionalidad->nombre.' ha sido eliminada correctamente.');
+   		try{
+			$funcionalidad->delete();
+			Session::flash('claseMensaje','info');
+			return Redirect::to('funcionalidades')->with('mensaje', 'La funcionalidad '.$funcionalidad->nombre.' ha sido eliminada correctamente.');
+		}catch(\Exception $e){
+			Session::flash('claseMensaje','danger');
+			return Redirect::to('roles')->with('mensaje', 'La funcionalidad '.$funcionalidad->nombre .'no se pudo dar de baja');
+		}
 	}
  
 }

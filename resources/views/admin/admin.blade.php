@@ -1,5 +1,4 @@
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -7,7 +6,6 @@
     <title>Hydros - Admin Panel</title>
      
       <link rel="stylesheet" type="text/css" href="{{ URL::asset('bootstrap/css/bootstrap.min.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ URL::asset('font-awesome/css/font-awesome.min.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/admin/local.css') }}" />
      <script type="text/javascript" src="{{ URL::asset('js/jquery-1.10.2.min.js') }}"></script>
     <script type="text/javascript" src="{{ URL::asset('bootstrap/js/bootstrap.min.js') }}"></script>
@@ -15,10 +13,12 @@
     @yield('css')
 
     <!-- you need to include the shieldui css and js assets in order for the charts to work -->
-    <link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/shieldui-all.min.css" />
-    <link rel="stylesheet" type="text/css" href="http://www.shieldui.com/shared/components/latest/css/light-bootstrap/all.min.css" />
-    <script type="text/javascript" src="http://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
-    <script type="text/javascript" src="http://www.prepbootstrap.com/Content/js/gridData.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://www.shieldui.com/shared/components/latest/css/shieldui-all.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://www.shieldui.com/shared/components/latest/css/light-bootstrap/all.min.css" />
+    <script type="text/javascript" src="https://www.shieldui.com/shared/components/latest/js/shieldui-all.min.js"></script>
+    <script type="text/javascript" src="https://www.prepbootstrap.com/Content/js/gridData.js"></script>
+    
+     @yield('javascript')
     
 </head>
 <body>
@@ -32,6 +32,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="{{ URL::to('usuarios') }}" >Panel de Administración</a>
+                
             </div>
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
@@ -43,21 +44,21 @@
                     <li><a href="bootstrap-elements.html"><i class="fa fa-list-ul"></i> Bootstrap Elements</a></li>
                     <li><a href="bootstrap-grid.html"><i class="fa fa-table"></i > Bootstrap Grid</a></li>  -->
                     <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuarios<span class="caret"></a><i class="fa fa-tasks"></i>
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuarios<span class="caret"></a>
                       <ul class="dropdown-menu" role="menu">
                         <li><a href="{{ URL::to('usuarios') }}">Listado usuarios</a></li>
                         <li><a href="{{ URL::to('usuarios/crear') }}">Alta usuario</a></li>
                       </ul>
                     </li>
                    <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Roles<span class="caret"></a><i class="fa fa-tasks"></i>
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Roles<span class="caret"></a>
                       <ul class="dropdown-menu" role="menu">
                         <li><a href="{{ URL::to('roles') }}">Listado roles</a></li>
                         <li><a href="{{ URL::to('roles/crear') }}">Alta rol</a></li>
                       </ul>
                     </li>
                     <li class="dropdown">
-                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Funcionalidades<span class="caret"></a><i class="fa fa-tasks"></i>
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Funcionalidades<span class="caret"></a>
                       <ul class="dropdown-menu" role="menu">
                         <li><a href="{{ URL::to('funcionalidades') }}">Listado funcionalidades</a></li>
                         <li><a href="{{ URL::to('funcionalidades/crear') }}">Alta funcionalidad</a></li>
@@ -65,29 +66,19 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right navbar-user">
+                    <li class="navbar-brand">
+                        @if ( Session::has('usuario'))
+                            <i class="glyphicon glyphicon-user"></i>
+                            <span class="">{{ Session::get('usuario') }}</span>
+                        @endif 
+                    </li>   
                     <li class="dropdown messages-dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> Messages <span class="badge">2</span> <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-header">2 New Messages</li>
-                            <li class="message-preview">
-                                <a href="#">
-                                    <span class="avatar"><i class="fa fa-bell"></i></span>
-                                    <span class="message">Security alert</span>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li class="message-preview">
-                                <a href="#">
-                                    <span class="avatar"><i class="fa fa-bell"></i></span>
-                                    <span class="message">Security alert</span>
-                                </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li><a href="#">Go to Inbox <span class="badge">2</span></a></li>
-                        </ul>
+                        <a href="{{ URL::to('/logout') }}" ><i class="fa fa-envelope"></i> Log out </a>
                     </li>
+                    <!-- @if(Session::has('usuario')) 
                     <li class="dropdown user-dropdown">
-                       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Steve Miller<b class="caret"></b></a>
+                       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>
+                       <b class="caret">{{ Session::get('usuario') }}</b></a>
                        <ul class="dropdown-menu">
                            <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
                            <li><a href="#"><i class="fa fa-gear"></i> Settings</a></li>
@@ -95,6 +86,7 @@
                            <li><a href="#"><i class="fa fa-power-off"></i> Log Out</a></li>
                        </ul>
                    </li>
+                   @endif -->
                 </ul>
             </div>
         </nav>
@@ -114,7 +106,7 @@
         http://www.shieldui.com/documentation/grid/javascript/getting.started
         http://www.shieldui.com/documentation/datasource/javascript/getting.started
     -->
-    <script type="text/javascript">
+   <!-- <script type="text/javascript">
         jQuery(function ($) {
             var performance = [12, 43, 34, 22, 12, 33, 4, 17, 22, 34, 54, 67],
                 visits = [123, 323, 443, 32],
@@ -202,7 +194,8 @@
                 ]
             });
         });
-    </script>
+    </script>-->
      @yield('javascript')
+     @include('admin/confirm_eliminacion')
 </body>
 </html>

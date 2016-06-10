@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder {
 		$this->call('FuncionalidadesTableSeeder');
 		$this->call('Rol_Has_Funcionalidad_TableSeeder');
 		$this->call('UsersTableSeeder');
+		$this->call('EventoTableSeeder');
 		
 	}
 

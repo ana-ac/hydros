@@ -48,12 +48,14 @@ Route::get('logout', [
 // routes of register
 Route::get('alta', [
 	'uses' => 'AuthController@showLogin',
-	'as' => 'register'
+	'as' => 'register',
+	'https' => true
 ]);
 
 Route::post('alta', [
 	'uses' => 'Auth\AuthController@postRegister',
-	'as' => 'register'
+	'as' => 'register',
+	'https' => true
 ]);
 
 //route of resources about userscontroller
@@ -64,44 +66,46 @@ Route::post('alta', [
 // LISTADO
 Route::get('/usuarios', [
 	'uses' => 'UsuarioController@index',
-	'as' => 'usuarios.index' 
+	'as' => 'usuarios.index' ,
+	'https' => true
 ]);	
 
 // ALTA
 Route::get('/usuarios/crear', [
 	'uses' => 'UsuarioController@create',
-	'as' => 'usuarios.crear'
+	'as' => 'usuarios.crear',
+	'https' => true
 ]);
 Route::post('/usuarios', [
 	'uses' => 'UsuarioController@store',
-	'as' => 'usuarios.store'
+	'as' => 'usuarios.store',
+	'https' => true
 ]);
 // PERFIL
 Route::get('/usuarios/{id}',[
 	'uses' => 'UsuarioController@show',
-	'as' => 'usuarios.detalle'
+	'as' => 'usuarios.detalle',
+	'https' => true
 ]);
 
 // EDICION
 Route::get('/usuarios/editar/{id}',[
 	'uses' => 'UsuarioController@edit',
-	'as' => 'usuarios.editar'
+	'as' => 'usuarios.editar',
+	'https' => true
 ]); 
 Route::post('/usuarios/actualizar/{id}',[
 	'uses' => 'UsuarioController@update',
-	'as' => 'usuarios.actualizar'
+	'as' => 'usuarios.actualizar',
+	'https' => true
 ]);
-/* Route::put('/usuarios/{id}',[
-	'uses' => 'UsuarioController@update',
-	'as' => 'usuarios.actualizar'
-]);*/
-
 
 
 // BAJA
 Route::delete('/usuarios/{id}',[
 	'uses' => 'UsuarioController@destroy',
-	'as' => 'usuarios.eliminar'
+	'as' => 'usuarios.eliminar',
+	'https' => true
 ]);
 
 //Route::controller('usuario', 'UsuarioController');
@@ -111,38 +115,45 @@ Route::delete('/usuarios/{id}',[
 
 Route::get('/roles', [
 	'uses' => 'RolController@index',
-	'as' => 'roles.index'
+	'as' => 'roles.index',
+	'https' => true
 ]);
 
 Route::post('/roles', [
 	'uses' => 'RolController@store',
-	'as' => 'roles.store'
+	'as' => 'roles.store',
+	'https' => true
 ]);
 
 Route::get('/roles/crear', [
 	'uses' => 'RolController@create',
-	'as' => 'roles.crear'
+	'as' => 'roles.crear',
+	'https' => true
 ]);
 
 Route::get('/roles/{id}',[
 	'uses' => 'RolController@show',
-	'as' => 'roles.detalle'
+	'as' => 'roles.detalle',
+	'https' => true
 ]);
 
 Route::get('/roles/editar/{id}',[
 	'uses' => 'RolController@edit',
-	'as' => 'roles.editar'
+	'as' => 'roles.editar',
+	'https' => true
 ]);
 
 
 Route::put('/roles/{id}',[
 	'uses' => 'RolController@update',
-	'as' => 'roles.actualizar'
+	'as' => 'roles.actualizar',
+	'https' => true
 ]);
 
 Route::delete('/roles/{id}',[
 	'uses' => 'RolController@destroy',
-	'as' => 'roles.eliminar'
+	'as' => 'roles.eliminar',
+	'https' => true
 ]);
 
 
@@ -150,38 +161,45 @@ Route::delete('/roles/{id}',[
 
 Route::get('/funcionalidades', [
 	'uses' => 'FuncionalidadController@index',
-	'as' => 'funcionalidades.index'
+	'as' => 'funcionalidades.index',
+	'https' => true
 ]);
 
 Route::post('/funcionalidades', [
 	'uses' => 'FuncionalidadController@store',
-	'as' => 'funcionalidades.store'
+	'as' => 'funcionalidades.store',
+	'https' => true
 ]);
 
 Route::get('/funcionalidades/crear', [
 	'uses' => 'FuncionalidadController@create',
-	'as' => 'funcionalidades.crear'
+	'as' => 'funcionalidades.crear',
+	'https' => true
 ]);
 
 Route::get('/funcionalidades/{id}',[
 	'uses' => 'FuncionalidadController@show',
-	'as' => 'funcionalidades.detalle'
+	'as' => 'funcionalidades.detalle',
+	'https' => true
 ]);
 
 Route::get('/funcionalidades/editar/{id}',[
 	'uses' => 'FuncionalidadController@edit',
-	'as' => 'funcionalidades.editar'
+	'as' => 'funcionalidades.editar',
+	'https' => true
 ]);
 
 
 Route::put('/funcionalidades/{id}',[
 	'uses' => 'FuncionalidadController@update',
-	'as' => 'funcionalidades.actualizar'
+	'as' => 'funcionalidades.actualizar',
+	'https' => true
 ]);
 
 Route::delete('/funcionalidades/{id}',[
 	'uses' => 'FuncionalidadController@destroy',
-	'as' => 'funcionalidades.eliminar'
+	'as' => 'funcionalidades.eliminar',
+	'https' => true
 ]);
 
 
@@ -215,27 +233,89 @@ Route::post('/login', [
 	'as' => 'login'
 ]);
 
+
 */
 // Logeado
-Route::get('/workspace', function(){
-	return View::make('vista_usuario');
-});
+Route::get('/workspace',[
+	'uses' => 'WorkspaceController@index',
+	'as' => 'workspace.index'
+]);
+
+Route::get('/workspacee',[
+	'uses' => 'WorkspaceController@indexe',
+	'as' => 'workspace.index'
+]);
 
 
-Route::get('/login', 'LoginController@getLogin');
+
+//Route::post('/login', 'LoginController@getLogin');
 //Route::post('auth/login', 'Front@authenticate');
 //Route::get('auth/logout', 'Front@logout');
 
 //Route::get('custom_auth/login', 'CustomAuth@getLogin'); 
 Route::post('/login', 'LoginController@postLogin');
+Route::get('/logout', 'LoginController@logout');
 
 
 // Carga Aplicaciones Json
-Route::post('/aplicaciones/prueba', [
-	'uses' => 'AplicacionesController@prueba',
-	'as' => 'aplicaciones.prueba'
+Route::post('/aplicaciones/{idFuncionalidad}', [
+	'uses' => 'AplicacionesController@index',
+	'as' => 'aplicaciones.id'
 ]);
 
 
-// Prueba ficheros
-Route::get('/ficheros', 'Ficheros@index');
+// Manejo de ficheros
+Route::get('/ficheros', 'FicherosLocal@index');
+
+Route::get('/ficheros/{dir}', [
+	'uses' => 'FicherosLocal@show',
+	'as' => 'ficheros.otro']);
+
+Route::get('/ficheros/abrir/{fichero}', 'FicherosLocal@abrir');
+
+Route::post('/ficheros' , [
+	'uses' => 'FicherosLocal@store',
+	'as' => 'ficheros.subir']);
+	
+Route::get('/ficheros/nuevo/{nombre}', 'FicherosLocal@crear');
+
+Route::get('/ficheros/eliminar/{nombre}', 'FicherosLocal@eliminar');
+
+
+
+
+//pruebas editor de texto
+
+Route::get('/editordetexto', [
+	'uses' => 'EditorController@index',
+	'as' => 'aplicacion.editor'
+]);
+
+/*Route::get('/agenda', [
+	'uses' => 'agendaController@index',
+	'as' => 'aplicacion.agenda'
+]);*/
+
+
+Route::get('/agendacalendario', [
+	'uses' => 'agendaController@index',
+	'as' => 'aplicacion.agenda'
+]);
+
+Route::get('/agendacalendarioo', [
+	'uses' => 'agendaController@indexe',
+	'as' => 'aplicacion.agenda'
+]);
+
+
+//rutas eventos
+Route::post('/eventos/crear', [
+	'uses' => 'EventoController@store',
+	'as' => 'eventos.crear'
+]);
+
+Route::post('/eventos', [
+	'uses' => 'EventoController@getATodosEventos',
+	'as' => 'eventos.get'
+]);
+

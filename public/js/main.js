@@ -1,7 +1,7 @@
 /**
  * Created by Julio Mederos.
  */
-window.addEventListener("load", main);
+
 
 var destino;
 
@@ -26,7 +26,7 @@ function dragenter(e) {
 function dragleave(e) {
     e.stopPropagation();
     e.preventDefault();
-    e.target.style.backgroundColor = "lightskyblue";
+    e.target.style.backgroundColor = "white";
 }
 
 function dragover(e) {
@@ -36,8 +36,8 @@ function dragover(e) {
 }
 
 function drop(e) {
-
-    e.target.style.backgroundColor = "lightskyblue";
+     e.target.style.backgroundColor = "white";
+//    e.target.style.backgroundColor = "lightskyblue";
 
     e.stopPropagation();
     e.preventDefault();
@@ -100,7 +100,7 @@ function XHR() {
         return new XMLHttpRequest();
     } else if (window.ActiveXObject) {
         return new XMLHttpRequest();
-    }
+    } 
 }
 
 /* Asigna el valor del objto XHR a la variabel xhr de este script */
@@ -127,7 +127,10 @@ function processRequest(method, url, responseProcessor, fichero) {
     var xhr = XHR();
     var frm = new FormData();
     frm.append("fichero", fichero);
-
+    
+    
+    $('meta[name=csrf_token]').attr("content");
+    
     //Creamos y añadimos un nuevo nodo a la zona de informacion. Mostramos visualmente informacion del fichero que estamos subiendo
     crearInfoElement(fichero);
 
@@ -156,13 +159,27 @@ function processRequest(method, url, responseProcessor, fichero) {
     });
     /********************** ----------------------- *****************************************/
     /* ****************************************************************************************** */
+    var token = getMeta();
 
     xhr.open(method, url, true);
+    xhr.setRequestHeader('X-CSRF-Token',token );
     xhr.send(frm);
 }
 
+function getMeta() { 
+   var metas = document.getElementsByTagName('meta'); 
+
+   for (var i=0; i<metas.length; i++) { 
+      if (metas[i].getAttribute("name") == "csrf_token") { 
+         return metas[i].getAttribute("content"); 
+      } 
+   } 
+
+    return "";
+} 
+
 function subirFichero(fichero){
-    processRequest("POST","upload.php",procesadorRespuestaFicheros, fichero);
+    processRequest("POST","/ficheros",procesadorRespuestaFicheros, fichero);
 }
 
 function crearInfoElement(fichero){
@@ -201,7 +218,7 @@ function crearInfoElement(fichero){
     trInfo.appendChild(tdProgressTxt);
 
     var informacion = document.getElementById("informacion");
-    informacion.appendChild(trInfo);
+//    informacion.appendChild(trInfo);
 }
 
 
@@ -241,6 +258,9 @@ function manejadorTimeOut(e) {
 function manejadorLoad(e) {
     var evento = e || window.event;
     console.log("------load-------Se dispara al finalizar la transacción.------------------");
+     setTimeout('', 1000);
+    // Se recarga la pagina, desde servidor
+    location.reload(true);
 }
 
 /***************************************************************/

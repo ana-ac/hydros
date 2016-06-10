@@ -1,0 +1,25 @@
+{
+  "name": "bower_components",
+  "homepage": "https://github.com/anahydros/hydros",
+  "authors": [
+    "ana <anahydros@gmail.com>"
+  ],
+  "description": "installation bower",
+  "main": "bower.json",
+  "keywords": [
+    "bower"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "masonry": "desandro/masonry#^4.1.0",
+    "jquery": "^2.2.4"
+  }
+}

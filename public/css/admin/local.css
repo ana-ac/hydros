@@ -200,3 +200,10 @@ table.tablesorter thead tr th:hover {
    color: #fff !important;
     background-color: rgba(82, 183, 163, 0.66) !important;
 }
+
+.container-fluid{
+  margin-right: auto !important;
+    margin-left: auto !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}

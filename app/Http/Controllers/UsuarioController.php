@@ -11,18 +11,23 @@ use Carbon\Carbon;
 use Session;
 use Redirect;
 use Log;
+use Storage;
+use FileSystem;
 
 use Illuminate\Http\Request;
 
 class UsuarioController extends Controller {
 	
+	public function usuarioConectado(){
+		return Session::get('usuario');
+	}
+	
 	public function index(){
 		$usuarios = Usuario::all(); // Recogemos todos los usuarios
-		
-		return View::make('usuarios.lista')->with('usuarios', $usuarios);	
+		$roles = Rol::lists('nombre', 'id'); // Devuelve un Array asociativo con los campos [ 'id_rol' => 'nombre_rol']
+		return View::make('usuarios.lista')->with(['usuarios' => $usuarios, 'roles' => $roles, 'usuarioConectado', self::usuarioConectado()]);	
 	
 	}
-
 
 	public function create()
 	{
@@ -31,6 +36,8 @@ class UsuarioController extends Controller {
 		$view = View::make('usuarios.alta');
 		$view->roles = $roles;
 		return $view;
+		
+		
 	}
 	
 
@@ -45,8 +52,8 @@ class UsuarioController extends Controller {
 		if(!$validacion->fails()){
 			// Guardamos el usuario con sus datos y pillamos el estado del guardado
 			try{
-				$usuario->email = Input::get('email');
-				$usuario->tipo = Input::get('tipo');
+				$email = $usuario->email = Input::get('email');
+				$tipo = $usuario->tipo = Input::get('tipo');
 				$usuario->rol = Input::get('rol');
 				// Si se ha introducido una nueva contraseña se guarda, sino, no se hace nada
 				$usuario->contraseña = \Hash::make(Input::get('contraseña'));
@@ -57,10 +64,23 @@ class UsuarioController extends Controller {
 				
 				$usuario->save();
 				
-				// Pasamos a la sesion los campos 'message' y 'class' con los datos a manejar
-				Session::flash('mensaje','Usuario '. $usuario->email  .' creado correctamente!');
-				Session::flash('class', 'success');
 			
+				
+				if($tipo == 0){
+					// Una vez creado el usuario [y no es administrador] se crea el directorio con el email del mismo 
+				
+				$disk = Storage::disk('local');
+				$disk->makeDirectory('/'.$usuario->email);	
+				/*	$aws = \Storage::disk('s3');
+					$aws->makeDirectory($email);
+					$aws->copy('_defecto/*', $email.'/'); */
+				}
+				
+				// Pasamos a la sesion los campos 'message' y 'class' con los datos a manejar
+				Session::flash('mensajes','Usuario '. $usuario->email  .' creado correctamente!');
+				Session::flash('class', 'success');
+				
+				
 				return redirect('/usuarios');
 				
 			}catch(\Illuminate\Database\QueryException $e){	// Controlamos la excepcion de BD http://stackoverflow.com/questions/26363271/laravel-check-for-constraint-violation
@@ -79,7 +99,7 @@ class UsuarioController extends Controller {
 				{
 					$errores .= 'ERROR: ' . $e->errorInfo[1]  . '\n\n' . $e->errorInfo[2];
 				}
-				Session::flash('mensaje', $errores);
+				Session::flash('mensajes', $errores);
 				Session::flash('class', 'danger');
 				return redirect()->back()->withInput()->withErrors($errores);
 				
@@ -99,7 +119,9 @@ class UsuarioController extends Controller {
 	{
 
 		$usuario = Usuario::find($id);
-		return View::make('usuarios.perfil')->with('usuario', $usuario);
+		$roles = Rol::lists('nombre', 'id'); // Devuelve un Array asociativo con los campos [ 'id_rol' => 'nombre_rol']
+
+		return View::make('usuarios.perfil')->with(['usuario' => $usuario, 'roles' => $roles]);
 	
 	}
 
@@ -131,13 +153,13 @@ class UsuarioController extends Controller {
 			$usuario->save();
 			
 			// Pasamos a la sesion los campos 'message' y 'class' con los datos a manejar
-			Session::flash('mensaje','Usuario ' . $usuario->email . ' actualizado correctamente!');
+			Session::flash('mensajes','Usuario ' . $usuario->email . ' actualizado correctamente!');
 			Session::flash('class', 'success');
 		
 			
 		}catch (Exception $e){
 			// Pasamos a la sesion los campos 'message' y 'class' con los datos a manejar
-			Session::flash('mensaje','Oops... ha ocurrido un error :(');
+			Session::flash('mensajes','Oops... ha ocurrido un error :(');
 			Session::flash('class', 'danger');
 			return redirect()->back()->withInput();
 		}
@@ -154,16 +176,28 @@ class UsuarioController extends Controller {
 		try{
 			$usuario = Usuario::find($id);
 			$email = $usuario->email;
+			
+			if($email == Session::get('usuario')){
+				// Pasamos a la sesion los campos 'message' y 'class' con los datos a manejar
+				Session::flash('mensajes','Error: No puedes eliminar tu propio perfil!');
+				Session::flash('class', 'danger');	
+				
+				return redirect()->back()->withInput();
+			}
+			
 			$usuario->delete();
 			
+			// Una vez creado el usuario se crea el directorio con el email del mismo 
+			Storage::disk('local')->deleteDirectory($email);
+			
 			// Pasamos a la sesion los campos 'message' y 'class' con los datos a manejar
-			Session::flash('mensaje', 'El usuario '. $email .' fue eliminado correctamente! ');
+			Session::flash('mensajes', 'El usuario '. $email .' fue eliminado correctamente! ');
 			Session::flash('class', 'success');
 		
 			
 		}catch (Exception $e){
 			// Pasamos a la sesion los campos 'message' y 'class' con los datos a manejar
-			Session::flash('mensaje','Oops... ha ocurrido un error:: ' . $e->getMessage());
+			Session::flash('mensajes','Oops... ha ocurrido un error:: ' . $e->getMessage());
 			Session::flash('class', 'danger');
 			
 		}

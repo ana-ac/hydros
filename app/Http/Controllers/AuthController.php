@@ -43,7 +43,7 @@ class AuthController extends Controller {
             return  redirect()->back()->withInput(Input::except('password'))->withErrors($validacion->messages());	
         }else{
             $credentials = array( 'email' => Input::get('email') , 'password' => Input::get('password') );
-        
+            
             // Si la autentificacion es correcta
             if(Auth::atempt($credentials)){
                 return View::make('vista_usuario');

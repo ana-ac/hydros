@@ -1,5 +1,10 @@
+function enviarFormulario(enlace){
+	$('#login-form').submit();
+}
 
 $(document).ready(function(e) {
+	
+	
 	$('.with-hover-text, .regular-link').click(function(e){
 		e.stopPropagation();
 	});
@@ -296,7 +301,7 @@ jQuery(document).ready(function ($) {
 	//Cache some variables
 	var arrows = $('#arrows div');
 	
-	arrows.click(function(e) {
+		arrows.click(function(e) {
 	   if(this.id != 'submit'){
 			e.preventDefault();
 	   }

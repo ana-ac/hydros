@@ -22,7 +22,9 @@
 </head>
 
 <body>
+	
 	<div class="navbar navbar-fixed-top" data-activeslide="1">
+	
 		<div class="container">
 		
 			<!-- .navbar-toggle is used as the toggle for collapsed navbar content -->
@@ -36,9 +38,9 @@
 			<div class="nav-collapse collapse navbar-responsive-collapse">
 				<ul class="nav row">
 				<li data-slide="1" class="col-12 col-sm-2"><a id="menu-link-1" href="#slide-1" title="Next Section"><span class="icon icon-home"></span> <span class="text">HOME</span></a></li>
-					<li data-slide="2" class="col-12 col-sm-2"><a id="menu-link-2" href="#slide-2" title="Next Section"><span class="icon icon-user"></span> <span class="text">NOSOTROS</span></a></li>
+					<li data-slide="2" id="slide_1" class="col-12 col-sm-2"><a id="menu-link-2" href="#slide-2" title="Next Section"><span class="icon icon-user"></span> <span class="text">NOSOTROS</span></a></li>
 					<li data-slide="3" class="col-12 col-sm-2"><a id="menu-link-3" href="#slide-3" title="Next Section"><span class="icon icon-briefcase"></span> <span class="text">PLATARFORMA</span></a></li>
-					<li class="col-12 col-sm-2"><a id="login" href="/login" title=""><span class="icon icon-sign-in"></span> <span class="text">SIGN IN</span></a></li>
+					<li data-slide="4" id="slide_4" class="col-12 col-sm-2"><a id="menu-link-4" href="#slide-4" title="Next Section"><span class="icon icon-sign-in"></span> <span class="text">SIGN IN</span></a></li>
 					<li data-slide="5" class="col-12 col-sm-2"><a id="menu-link-5" href="#slide-5" title="Next Section"><span class="icon icon-ligth"></span> <span class="text">PROCESO</span></a></li>
 					<li data-slide="6" class="col-12 col-sm-2"><a id="menu-link-6" href="#slide-6" title="Next Section"><span class="icon icon-envelope"></span> <span class="text">CONTACTO</span></a></li>
 				</ul>
@@ -137,10 +139,13 @@
 				<div class="col-sm-1 hidden-sm">&nbsp;</div>
 			</div><!-- /row -->
 			{!! Form::open(['id' => 'login-form' , 'url' => 'login' , 'method' => 'POST']) !!}
-			<div class="row container" >
+			<div class="row container" style="text-align: left;font-size:16px;" >
 		
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="email" >Correo electrónico</label>
+					@if($errors->first('email')) 
+						<span style="color:red;" >{{ $errors->first('email') }} </span>
+					@endif
 					<div class="col-md-6">
               			{!! Form::email('email', Input::old('email'), ['class' => 'form-control', 'id' => 'email', 'placeholder' => 'Correo electrónico']  ) !!}
               			
@@ -149,13 +154,17 @@
 
 				<div class="form-group">
 					<label class="control-label col-sm-2" for="password" >Password</label>
+					@if($errors->first('email')) 
+						<span style="color:red;" >{{ $errors->first('contraseña') }} </span>
+					@endif
 					<div class="col-md-6">
-		              	{!! Form::password('clave', ['class' => 'form-control', 'id' => 'clave', 'placeholder' => 'Contraseña']  ) !!}
+		              	{!! Form::password('contraseña', ['class' => 'form-control', 'id' => 'contraseña', 'placeholder' => 'Contraseña']  ) !!}
 		              	 
 					</div>
 				</div>
-				
-			{!! Form::button('Entra', array('class' => 'btn btn-primary pull-right','id' => 'submit')) !!}
+				<a href="#" id="buttonSubmit" onclick="enviarFormulario(this)" >
+					<input type="button" value="Entrar" class="btn btn-primary pull-right" id="login" />
+				</a>
 			
 			</div><!-- /container -->
 			{!! Form::close() !!}
@@ -243,8 +252,6 @@
 		</div><!-- /container -->
 	</div><!-- /Slide 6 -->
 	
-</body>
-
 	<!-- SCRIPTS -->
 	<script src="js/presentacion/html5shiv.js"></script>
 	<script src="js/presentacion/jquery-1.10.2.min.js"></script>
@@ -253,6 +260,17 @@
 	<script src="js/presentacion/jquery.easing.1.3.js"></script>
 	<script type="text/javascript" src="fancybox/jquery.fancybox.pack-v=2.1.5.js"></script>
 	<script src="js/presentacion/script.js"></script>
+	
+	@if(Session::has('loginFallido'))
+		<script>
+			$('#slide_4').addClass('active');
+			$('#slide_1').removeClass('active');
+		</script>
+	@endif
+	
+</body>
+
+	
 	
 	<!-- fancybox init -->
 	<script>
@@ -270,16 +288,23 @@
 		});
 	
 	});
-		$('#submit').click(function(e){
-			e.stopPropagation();
+		$('#login').click(function(e){
+			//e.stopPropagation();
     		$('#login-form').submit();
 		});
-	
-		$('#login').click(function(e){
+		
+		$("#contraseña").keyup(function(e){
+		    if(e.keyCode == 13)
+		    {	
+		    
+		    	$('#login').closest("form").submit();
+		    }
+		});
+	/*	$('#login').click(function(e){
 			e.stopPropagation();
 			$(window).attr('href', '/login');
     		// window.location('/login'); 
-		});
+		});*/
 	</script>
 
 </html>

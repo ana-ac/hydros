@@ -17,6 +17,7 @@ class Funcionalidades extends Migration {
 			$table->increments('id');
 			$table->string('nombre',50);
 			$table->string('descripcion',100)->nullable();
+			$table->string('icono',20);
 			
 			$table->timestamps(); // obligatorio para registro de 'created_at' & 'updated_at'
 

@@ -69,6 +69,7 @@ class RolController extends Controller {
 			}
 			
 			 // redirect
+			 Session::flash('claseMensaje','info');
             Session::flash('mensaje', 'El rol '. $rol->nombre .'ha sido creado correctamente!');
             return Redirect::to('roles');
 			
@@ -150,7 +151,10 @@ class RolController extends Controller {
            	 $rol = Rol::find($id);
 			 $rol->nombre = Input::get('nombre');
 			 $rol->descripcion = Input::get('descripcion');
-			 $rol->update();
+			 
+			
+				$rol->update();
+			
 				
 			DB::table('Rol_Has_Funcionalidad')->where('rol', $id)->delete();
 			 //$rol->funcionalidades()->delete();
@@ -163,6 +167,7 @@ class RolController extends Controller {
 			}
 			
             // redirect
+            Session::flash('claseMensaje','info');
             Session::flash('mensaje', 'El rol '. $rol->nombre .'ha sido editado correctamente!');
             return Redirect::to('roles');
         }
@@ -176,8 +181,16 @@ class RolController extends Controller {
 	 */
 	public function destroy($id){
 		$rol = Rol::find($id);
-   		$rol->delete();
-   		return Redirect::to('roles')->with('mensaje', 'El Rol ' .$rol->nombre.' ha sido eliminado correctamente.');
+		
+		try{
+			$rol->delete();
+			Session::flash('claseMensaje','info');
+			return Redirect::to('roles')->with('mensaje', 'El Rol ' .$rol->nombre.' ha sido eliminado correctamente.');
+		}catch(\Exception $e){
+			Session::flash('claseMensaje','danger');
+			return Redirect::to('roles')->with('mensaje', 'El rol '.$rol->nombre.'no se pudo dar de baja ya que tiene usuarios asociados');
+		}
+   	
 	}
 
 }

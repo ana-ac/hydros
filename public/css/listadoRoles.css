@@ -9,3 +9,85 @@
     box-shadow: 3px 3px 0px transparent;
     transition: 0.5s;
     }
+    
+    	td{
+		   	border-collapse: collapse;
+		    border-style: solid;
+		    border-width: 0 0 1px 1px;
+		    display: table-cell;
+		    overflow: hidden;
+		    padding: .6em;
+		    vertical-align: middle;
+		    white-space: normal;
+		    width: auto;
+		    border-color: #e7e7e7;
+    		}
+    		th{
+    			border-left: 1px solid #e7e7e7;
+			    border-style: none none none solid;
+			    border-top: 0 solid #e7e7e7;
+			    background-color: #fff;
+			    border-collapse: collapse;
+			    overflow: hidden;
+			    text-align:center;
+			    text-overflow: ellipsis;
+			    font-size: 1.1em;
+			    padding-top: .658em;
+			    padding-bottom: .518em;
+			    padding-left: .518em;
+			    padding-right: .518em;
+			    white-space: normal;
+			    font-weight: 700;
+			    border-width: 0 0 0 1px;
+    		}
+    		table{
+    			border: 0 none;
+    table-layout: fixed;
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+    empty-cells: show;
+    text-align:center;
+    		}
+    		thead{
+    			border-bottom: 2px solid #93c1b8;
+			    border-top: 1px solid #e7e7e7;
+			    color: #333;
+			    
+    		}
+    		#accion{
+    			display: inline-block;
+    		}
+    		#accion form{
+    			display: inline !important;
+    		}
+    		#accion input{
+    			color: #6d6d6d;
+			    background-color: #ecedee;
+			    border-color: #c4c4c4;
+			    border-width: 1px;
+			    border-style: solid;
+			    padding: .3em .6em;
+			    cursor: pointer;
+			    overflow: hidden;
+			    text-align: center;
+			    display:inlinne;
+    		}
+    		
+.panel-title{
+    height: 35px !important;
+}
+
+.panel-heading span.icono{
+    position: absolute;
+    right: 6%;
+    top: 7%;
+    font-size: 26px;
+}
+
+.panel-heading span.texto{
+    position: absolute;
+    right: 9%;
+    top: 7%;
+    font-size: 18px;
+}

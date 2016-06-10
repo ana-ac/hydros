@@ -134,7 +134,7 @@ return [
 		'Illuminate\Session\SessionServiceProvider',
 		'Illuminate\Translation\TranslationServiceProvider',
 		'Illuminate\Validation\ValidationServiceProvider',
-		'Illuminate\View\ViewServiceProvider',
+		'Illuminate\View\ViewServiceProvider', 
 		
 		
 		/*
@@ -197,7 +197,7 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
 		 'Form' => Collective\Html\FormFacade::class,
-      'Html' => Collective\Html\HtmlFacade::class
+       'Html' => Collective\Html\HtmlFacade::class
 	
 
 	],

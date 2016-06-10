@@ -5,9 +5,10 @@ use Carbon\Carbon;
 
 class UsersTableSeeder extends Seeder{
     
-    public function run(){
+   
+     public function run(){
 
-        \DB::table('usuarios')->insert(
+      \DB::table('usuarios')->insert(
         array(
             'id' => 1,
             'nombre' => 'vadim',
@@ -16,9 +17,8 @@ class UsersTableSeeder extends Seeder{
             'email' => 'vadimvt@gmail.com',
             'contraseña' => \Hash::make('vadimvt'),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'rol' => 1,
+            'rol' => 2,
             'tipo' => 0, //usuario normal
-            'estado' => 1
         ));
         
         \DB::table('usuarios')->insert(
@@ -30,9 +30,8 @@ class UsersTableSeeder extends Seeder{
             'email' => 'anahydros@gmail.com',
             'contraseña' => \Hash::make('anaac'),
             'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-            'rol' => 1,
+            //no se especifica rol ya que es administrador
             'tipo' => 1, //usuario administrador
-            'estado' => 1 //activo
         ));
     }
 }

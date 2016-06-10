@@ -4,7 +4,10 @@ use Closure;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
 
 class VerifyCsrfToken extends BaseVerifier {
-
+	
+	protected $except = [
+	 'ficheros/buscar'
+	];
 	/**
 	 * Handle an incoming request.
 	 *

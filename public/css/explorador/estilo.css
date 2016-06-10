@@ -1,0 +1,122 @@
+*{
+            padding: 0;
+            margin:0;
+            
+        }
+        #navegacion {
+            width: 100%;
+            height: 100%;
+    
+            position: relative;
+            overflow-y: auto;
+        }
+        
+        
+        
+        .detalle {
+            width:100%;
+            height: 90%;
+            position:absolute;
+            padding-top: 10px;
+            top:30px;
+        }
+        
+            .fichero, .carpeta, .nueva{
+                width: 100px;
+                height: 100px;
+                margin: 5px ;
+                float: left;
+                
+                text-align: center;
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .fichero:hover, .carpeta:hover{
+                background-color:grey;
+            }
+            
+            .fichero{
+                
+            }
+            
+            .carpeta{
+                
+            }
+                .icono{
+                    width: 80px;
+                    height: 80px;
+                    position: relative;
+                }
+                
+                .ico{
+                    
+                }
+                .nombre{
+                    position: absolute;
+                    bottom: 0px;
+                    left: 0px;
+                    width: 100px;
+                    font-size: 12px;
+                }
+            
+            .seleccionado {
+                border: 2px solid grey;
+                padding-left: 10px;
+            }
+            
+            .icono_volver {
+                width: 30px;
+                height: 30px;
+                position:relative;
+                float:left;
+                
+            }
+            
+            .icono_volver:hover {
+                background-color:grey;
+            }
+            
+            
+            .ruta_actual {
+                width:100%;
+                height:30px;
+                position: absolute;
+                top: 0;
+                left: 0;
+                border-bottom: 2px solid grey;
+            }
+            
+            .ruta_actual input {
+                width:90%;
+                height:100%;
+            }
+            
+            .ruta_oculta {
+                display:none;
+            }
+            
+            
+            #info{
+                position:absolute;
+                bottom: 0;
+                width: 99%;
+                height: 30px;
+                text-align: center;
+                border: 1px solid blue;
+                padding: 5px;
+               
+            }
+            
+.eliminar{
+    position: relative;
+    float: right;
+    background: black;
+    color: white;
+    visibility: hidden;
+
+}
+
+.fichero:hover > .eliminar , .carpeta:hover > .eliminar{
+    visibility: visible;
+}

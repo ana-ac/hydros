@@ -3,6 +3,7 @@
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
 
+
 class rol extends Model {
 
 		protected $table = 'roles';
@@ -16,6 +17,10 @@ class rol extends Model {
        /*determinar la relacion many to many hacia la tabla funcionalidades*/
         public function funcionalidades(){
             return $this->belongsToMany('hydros_final\funcionalidad','Rol_Has_Funcionalidad','rol','funcionalidad');
+        }
+        
+        public function usuarios(){
+            return $this->hasMany('hydros_final\usuario');
         }
         
 

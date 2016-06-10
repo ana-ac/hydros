@@ -13,3 +13,18 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+
+#denegar el acceso al archivo htacces
+<Files .htaccess>
+    order allow,deny
+    deny from all
+</Files>
+
+#denegar acceso a dterminados archivos fundamentales de configuración
+<FilesMatch "\.(htaccess|htpasswd|ini|phps|fla|psd|log|sh)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+
+

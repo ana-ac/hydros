@@ -16,13 +16,16 @@
           <div class="panel panel-info">
             <div class="panel-heading">
               <h3 class="panel-title">Perfil del usuario {{ $usuario->nombre . ' :: ' . $usuario->email}}</h3>
+              
+              
             </div>
             
             <div class="panel-body">
 
-                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="http://www.rebiun.org/PublishingImages/iconos/Grupo.png" class="img-circle img-responsive"> </div>
 
-            <div class=" col-md-9 col-lg-9 "> 
+            <div class=" col-md-9 "> 
+                        <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="http://www.rebiun.org/PublishingImages/iconos/Grupo.png" class="img-circle img-responsive"> </div>
+
               <table class="table table-user-information">
                 <tbody>
                   <tr>
@@ -43,7 +46,13 @@
                   </tr>
                     <tr>
                         <td>Fecha alta</td>
-                        <td>{{ $usuario->created_at  }}</td>
+                        <td>	
+                          @if($usuario->created_at != null)
+              								{{ $usuario->created_at }}
+              						@else
+              								 - 
+              						@endif
+              					</td>
                    </tr>
                   <tr>
                     <td>Número de teléfono</td>
@@ -51,21 +60,20 @@
                   </tr>
                   <tr>
                     <td>Tipo</td>
-                    <td>{{ $usuario->tipo  }}</td>
+                    <td>
+                      @if($usuario->tipo == 0)
+      								    <span class="label label-success">Normal</span>
+      							    @else
+      								     <span class="label label-warning">Administrador</span>
+      						      @endif
+                    </td>
                   </tr>
                   <tr>
                     <td>Roll</td>
-                    <td>{{ $usuario->rol }}</td>
+                    <td>{{ $roles[$usuario->rol ]}}</td>
   						    </tr>
-							    <tr>
-							      <td>Estado</td>
-  							    @if($usuario->estado == 1)
-  							      <td><span class="label label-success">Activo</span></td>
-  						      @else
-  						        <td><span class="label label-warning">Inactivo</span></td>
-  					        @endif
-                  </tr>
-                  
+							    
+                
                   </tbody>
                 </table>
                   
@@ -75,9 +83,12 @@
             </div>
             
             <div class="panel-footer">
+              <a href="{{ URL::route('usuarios.editar', [$usuario->id]) }}" data-original-title="Editar usuario" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+
               <span class="pull-right">
-                  <a href="{{ URL::route('usuarios.editar', [$usuario->id]) }}" data-original-title="Editar usuario" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
-                  <a data-original-title="Borrar usuario" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                {!! Form::open(array('class' => 'form-inline', 'method' => 'DELETE', 'route' => array('usuarios.eliminar', $usuario->id ))) !!}
+                   {!! Form::submit('Eliminar') !!}
+                {!! Form::close() !!}
               </span>
             </div>   
           </div>
